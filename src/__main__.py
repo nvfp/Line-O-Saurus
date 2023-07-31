@@ -23,7 +23,7 @@ def main():
 
     args = p.parse_args()
     if args.cmd == 'get-num-repos':
-        get_num_repos(args.raw)
+        print(get_num_repos(args.raw))  # Output the result to the shell
     elif args.cmd == 'get-clone-urls':
         print(repr(args.raw))
     elif args.cmd == 'run':
