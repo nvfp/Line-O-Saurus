@@ -29,6 +29,7 @@ runs:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
         x=$(gh repo list nvfp --visibility public --json url)
+        python $GITHUB_ACTION_PATH/src get-num-repos $x
         y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
         echo "x: '$x'"
         echo "y: '$y'"
