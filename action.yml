@@ -28,18 +28,10 @@ runs:
       env:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
-        echo "::group::1"
-        gh repo list nvfp --visibility public --json url
-        echo "::endgroup::"
-        
-        echo "::group::2"
         x=$(gh repo list nvfp --visibility public --json url)
-        echo "x: $x"
-        echo "---"
+        y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
         echo "x: '$x'"
-        echo "::endgroup::"
-        
-        python $GITHUB_ACTION_PATH/src/main.py
+        echo "y: '$y'"
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
         name: ${{ env.git-name }}
