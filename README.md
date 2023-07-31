@@ -1,6 +1,6 @@
 # Lineosaurus
 
-foo
+![lineosaurus](https://github.com/nvfp/Line-O-Saurus/blob/main/assets/lineosaurus.jpg?raw=true)
 
 
 ## License
