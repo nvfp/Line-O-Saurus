@@ -28,7 +28,7 @@ runs:
       env:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
-        python src/main.py
+        python $GITHUB_ACTION_PATH/src/main.py
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
         name: ${{ env.git-name }}
