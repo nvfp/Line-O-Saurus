@@ -29,13 +29,20 @@ runs:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
         git clone https://github.com/nvfp/tweet-posts.git
+        echo "::group::ls $(pwd)"
+        ls
+        echo "::endgroup::"
+        
         cd tweet-posts
-        echo "::group::git checkout fractal-metadata"
-        git checkout fractal-metadata
+        echo "::group::1"
+        branches=($(git branch --format='%(refname:short)'))
+        echo "branches: $branches"
+
+        for branch in "${branches[@]}"; do
+          echo "$branch"
+        done
         echo "::endgroup::"
-        echo "::group::git rev-list --count HEAD"
-        git rev-list --count HEAD
-        echo "::endgroup::"
+        
         python $GITHUB_ACTION_PATH/src/main.py
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:

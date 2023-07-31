@@ -3,9 +3,9 @@ import os
 
 def main():
     SHOW_CREDIT = os.environ['SHOW_CREDIT']
-    print(SHOW_CREDIT)
-    print(type(SHOW_CREDIT))
-    print(repr(SHOW_CREDIT))
+    GH_WORKSPACE = os.environ['GITHUB_WORKSPACE']
+    
+    print(GH_WORKSPACE)
 
 
 if __name__ == '__main__':
