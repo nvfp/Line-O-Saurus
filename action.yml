@@ -7,7 +7,9 @@ branding:
 
 inputs:
   git-name:
+    description: Git name
   git-email:
+    description: Git email
   show-credit:
     description: show the credit
     required: false
