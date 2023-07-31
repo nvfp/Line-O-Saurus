@@ -28,6 +28,13 @@ runs:
       env:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
+        echo "::group::ls $(pwd)"
+        ls
+        echo "::endgroup::"
+        git clone https://github.com/nvfp/tweet-posts.git
+        echo "::group::ls $(pwd)"
+        ls
+        echo "::endgroup::"
         python $GITHUB_ACTION_PATH/src/main.py
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:

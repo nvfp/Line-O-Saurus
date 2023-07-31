@@ -2,9 +2,11 @@ import os
 
 
 def main():
-    print(123)
-    for key, value in os.environ.items():
-        print(f"{key} = {value}")
+    SHOW_CREDIT = os.environ['SHOW_CREDIT']
+    print(SHOW_CREDIT)
+    print(type(SHOW_CREDIT))
+    print(repr(SHOW_CREDIT))
+
 
 if __name__ == '__main__':
     main()
