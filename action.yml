@@ -1,0 +1,36 @@
+name: lineosaurus
+description: let's count
+author: Nicholas Valentinus
+branding:
+  icon: align-justify
+  color: gray-dark
+
+inputs:
+  git-name:
+  git-email:
+  show-credit:
+    description: show the credit
+    required: false
+    default: true
+  only_type:
+    description: "['.py', '.js']"
+    required: false
+  ignore_type:
+    description: "['.py', '.js']"
+    required: false
+
+runs:
+  using: 'composite'
+  steps:      
+    - shell: bash
+      env:
+        INPUT_TAG: ${{ inputs.tag }}
+        INPUT_DESC: ${{ inputs.desc }}
+      run: |
+        chmod +x $GITHUB_ACTION_PATH/main.sh
+        $GITHUB_ACTION_PATH/main.sh
+    - run: scapeville/action-git-add-all-then-commit-then-push
+      with:
+        name: ${{ inputs.git-name }}
+        email: ${{ inputs.git-email }}
+        msg: foo
