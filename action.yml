@@ -32,8 +32,8 @@ runs:
         y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
         echo "x: '$x'"
         echo "y: '$y'"
-    - uses: scapeville/action-git-add-all-then-commit-then-push@v1
-      with:
-        name: ${{ env.git-name }}
-        email: ${{ env.git-email }}
-        msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
+    # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
+    #   with:
+    #     name: ${{ env.git-name }}
+    #     email: ${{ env.git-email }}
+    #     msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
