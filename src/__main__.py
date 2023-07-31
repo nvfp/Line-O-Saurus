@@ -1,4 +1,11 @@
 import argparse
+import os
+import sys
+
+## Make all dirs under the project's root dir importable
+print(repr(os.environ['GITHUB_ACTION_PATH']))
+print(os.listdir(os.environ['GITHUB_ACTION_PATH']))
+sys.path.append(os.environ['GITHUB_ACTION_PATH'])
 
 from .get_num_repos import get_num_repos
 
