@@ -28,19 +28,15 @@ runs:
       env:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
-        git clone https://github.com/nvfp/tweet-posts.git
-        echo "::group::ls $(pwd)"
-        ls
+        echo "::group::1"
+        gh repo list nvfp --visibility public --json url
         echo "::endgroup::"
         
-        cd tweet-posts
-        echo "::group::1"
-        branches=($(git branch --format='%(refname:short)'))
-        echo "branches: $branches"
-
-        for branch in "${branches[@]}"; do
-          echo "$branch"
-        done
+        echo "::group::2"
+        x=$(gh repo list nvfp --visibility public --json url)
+        echo "x: $x"
+        echo "---"
+        echo "x: '$x'"
         echo "::endgroup::"
         
         python $GITHUB_ACTION_PATH/src/main.py
