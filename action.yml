@@ -30,11 +30,8 @@ runs:
       run: |
         git clone https://github.com/nvfp/tweet-posts.git
         cd tweet-posts
-        echo "::group::ls $(pwd)"
-        ls
-        echo "::endgroup::"
-        echo "::group::git branch"
-        git branch
+        echo "::group::git checkout fractal-metadata"
+        git checkout fractal-metadata
         echo "::endgroup::"
         echo "::group::git rev-list --count HEAD"
         git rev-list --count HEAD
