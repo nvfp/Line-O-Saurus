@@ -12,14 +12,28 @@ inputs:
     description: Git email
   show-credit:
     description: show the credit
-    required: false
     default: true
   only_type:
     description: "['.py', '.js']"
-    required: false
+    default: null
   ignore_type:
     description: "['.py', '.js']"
-    required: false
+    default: null
+  header:
+    description: Header
+    default: null
+  footer:
+    description: Footer
+    default: null
+  custom-title:
+    description: Title
+    default: null
+  num-shown:
+    description: Number
+    default: 5
+  show-approx:
+    description: Approx
+    default: true
 
 runs:
   using: 'composite'
@@ -35,13 +49,18 @@ runs:
         echo "::endgroup::"
         echo "::group::DEBUG"
         echo "NUM: '$NUM'"
-        for i in "${!URLS[@]}"; do
-          echo "$((i+1)): ${URLS[i]}"
+        for url in $URLS; do
+          echo "URL: '$url'"
         done
         echo "::endgroup::"
 
-        # mkdir $GITHUB_WORKSPACE/../workspace
-        # cd $GITHUB_WORKSPACE/../workspace
+        echo "::group::Cloning"
+        ## Folder to store all the cloned repositories
+        mkdir $GITHUB_WORKSPACE/../workspace
+        cd $GITHUB_WORKSPACE/../workspace
+
+
+        echo "::endgroup::"
 
         # echo "::group::ls $(pwd)"
         # ls
