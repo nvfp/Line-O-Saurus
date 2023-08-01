@@ -5,7 +5,7 @@ from datetime import datetime
 from mykit.kit.text import byteFmt
 from mykit.kit.utils import printer
 
-from src.constants import NON_TEXT
+from src.constants import NON_TEXT_TYPE, NON_TEXT_FILENAME
 from src.get_options import get_options
 
 
@@ -19,33 +19,36 @@ def get_readme(REPO_ROOT_DIR):
 
 def engine(WORKSPACE_DIR, OPTIONS):
 
-    total_line, total_size = 0, 0
+    total_pub_repos, total_line, total_size = 0, 0, 0
 
     def rec(path):
         line, size = 0, 0
-        for i in os.listdir(path):
-            p = os.path.join(path, i)
-            if os.path.isfile(p):
-                ext = os.path.splitext(p)[1]
-                if ext not in NON_TEXT:
+        for file_name in os.listdir(path):
+            file_path = os.path.join(path, file_name)
+            if os.path.isfile(file_path):
+                file_ext = os.path.splitext(file_path)[1]
+                if (file_name in NON_TEXT_FILENAME) or (file_ext in NON_TEXT_TYPE):
+                    pass
+                else:
                     try:
-                        with open(p, 'r', encoding='utf-8') as f: line += len(f.read().split('\n'))
+                        with open(file_path, 'r', encoding='utf-8') as f: line += len(f.read().split('\n'))
                     except Exception as err:
-                        printer(f'ERROR: path: {repr(p)}  err: {err}')
-                size += os.path.getsize(p)
+                        printer(f'ERROR: path: {repr(file_path)}  err: {err}')
+                size += os.path.getsize(file_path)
             else:
-                _line, _size = rec(p)
+                _line, _size = rec(file_path)
                 line += _line
                 size += _size
         return line, size
     
     for repo in os.listdir(WORKSPACE_DIR):
+        total_pub_repos += 1
         repo_path = os.path.join(WORKSPACE_DIR, repo)
         LINE, SIZE = rec(repo_path)
         total_line += LINE
         total_size += SIZE
 
-    return f'{total_line} {byteFmt(total_size)}'
+    return f'{total_line} {byteFmt(total_size)}  {total_pub_repos}'
     text = f"""
 # {datetime.now().strftime('%b %d, %Y')}, 300,000 lines across foo bar repositories
 
