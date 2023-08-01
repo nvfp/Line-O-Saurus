@@ -6,11 +6,11 @@ on:
   workflow_dispatch:  # Run manually from 'Actions' tab
     inputs:
       dir:
-        description: "Set directory path for executable shell files. Examples: `./`, `foo`, or `./foo`."
+        description: directory path
         type: string
         required: true
       recursive:
-        description: "Include subdirectories: `true` for yes, `false` for no. Default: `false`."
+        description: recursive
         type: boolean
         required: false
         default: false
