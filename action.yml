@@ -14,7 +14,7 @@ inputs:
     required: true
   only-type:
     description: "['.py', '.js']"
-    default: null  # Dev note: in YAML, `null` becomes `''` in Python.
+    default: null  # Note: in YAML, `null` becomes `''` in Python.
   ignore-type:
     description: "['.py', '.js']"
     default: null
