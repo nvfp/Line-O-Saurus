@@ -1,0 +1,40 @@
+name: foo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          # Set the path to the "foo" directory
+          foo_path="$GITHUB_WORKSPACE/src"
+          
+          # Check if the "foo" directory exists
+          if [ ! -d "$foo_path" ]; then
+            echo "Error: The 'foo' directory does not exist."
+            exit 1
+          fi
+          
+          # Find all .sh files in the "foo" directory and its subdirectories
+          sh_files=$(find "$foo_path" -type f -name "*.sh")
+          
+          # Check if any .sh files were found
+          if [ -z "$sh_files" ]; then
+            echo "No .sh files found in the 'foo' directory and its subdirectories."
+          else
+            # Loop through each .sh file and make it executable
+            for file in $sh_files; do
+              chmod +x "$file"
+              echo "Made $file executable."
+            done
+          fi
+      - uses: scapeville/action-git-add-all-then-commit-then-push@v1
+        with:
+          name: make exe
+          email: nicho@scapeville.com
+          msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
