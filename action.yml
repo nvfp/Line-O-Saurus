@@ -39,6 +39,7 @@ runs:
         ls $(pwd)
         echo "::endgroup::"
 
+        mkdir $GITHUB_WORKSPACE/../workspace
         echo "::group::ls $GITHUB_WORKSPACE/.."
         ls $GITHUB_WORKSPACE/..
         echo "::endgroup::"
