@@ -26,7 +26,7 @@ def main():
     if args.cmd == 'get-num-repos':
         print(get_num_repos(args.raw))  # Output the result to the shell
     elif args.cmd == 'get-clone-urls':
-        print('\n'.join(get_clone_urls(args.raw)))  # Output the result to the shell
+        print(' '.join(get_clone_urls(args.raw)))  # Output the result to the shell
     elif args.cmd == 'run':
         print(3)
 
