@@ -2,10 +2,11 @@ import os
 import re
 
 
-def get_readme(WORKSPACE_DIR):
-    for i in os.listdir(WORKSPACE_DIR):
-        if re.match(r'^readme\.md$', i, re.IGNORECASE):
-            return os.path.join(WORKSPACE_DIR, i)
+def get_readme(REPO_ROOT_DIR):
+    for i, j in enumerate(os.listdir(REPO_ROOT_DIR), 1):
+        print(f'DEBUG: {str(i).zfill(2)}: {repr(j)}')
+        if re.match(r'^readme\.md$', j, re.IGNORECASE):
+            return os.path.join(REPO_ROOT_DIR, j)
     raise FileNotFoundError('README.md not found.')
 
 
@@ -29,6 +30,6 @@ def run():
     CARD_TITLES = os.environ['CARD_TITLES']
     CARD_ORDER = os.environ['CARD_ORDER']
 
-    README = get_readme(WORKSPACE_DIR)
+    README = get_readme(REPO_ROOT_DIR)
     with open(README, 'w') as f:
         f.write('foo')
