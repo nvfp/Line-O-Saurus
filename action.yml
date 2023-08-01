@@ -36,6 +36,12 @@ inputs:
   show-approx:
     description: Approx
     default: true
+  card-titles:
+    description: card titles
+    default: null
+  card-order:
+    description: card order
+    default: null
 
 runs:
   using: 'composite'
@@ -54,6 +60,8 @@ runs:
         CUSTOM_TITLE: ${{ inputs.custom-title }}
         NUM_SHOWN: ${{ inputs.num-shown }}
         SHOW_APPROX: ${{ inputs.show-approx }}
+        CARD_TITLES: ${{ inputs.card-titles }}
+        CARD_ORDER: ${{ inputs.card-order }}
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
         name: ${{ env.git-name }}
