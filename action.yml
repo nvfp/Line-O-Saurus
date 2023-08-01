@@ -35,8 +35,11 @@ runs:
         echo "::endgroup::"
         echo "::group::DEBUG"
         echo "NUM: '$NUM'"
-        for ((i=0; i<${#URLS[@]}; i++)); do
-          echo "$((i+1)): ${URLS[i]}"
+        # for ((i=0; i<${#URLS[@]}; i++)); do
+        #   echo "$((i+1)): ${URLS[i]}"
+        # done
+        for url in $URLS; do
+          echo "11: $url"
         done
         echo "::endgroup::"
 
