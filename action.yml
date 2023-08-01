@@ -64,6 +64,6 @@ runs:
         CARD_ORDER: ${{ inputs.card-order }}
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
-        name: ${{ env.git-name }}
-        email: ${{ env.git-email }}
+        name: ${{ inputs.git-name }}
+        email: ${{ inputs.git-email }}
         msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
