@@ -8,8 +8,10 @@ branding:
 inputs:
   git-name:
     description: Git name
+    required: true
   git-email:
     description: Git email
+    required: true
   show-credit:
     description: Show the credit
     default: true
