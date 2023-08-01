@@ -57,7 +57,13 @@ runs:
         ls $GITHUB_WORKSPACE/..
         echo "::endgroup::"
     - shell: bash
-      working-directory: $GITHUB_WORKSPACE/../workspace
+      working-directory: ../workspace
+      run: |
+        echo "::group::ls $(pwd)"
+        ls $(pwd)
+        echo "::endgroup::"
+    - shell: bash
+      working-directory: ${{ github.workspace }}/../workspace
       run: |
         echo "::group::ls $(pwd)"
         ls $(pwd)
