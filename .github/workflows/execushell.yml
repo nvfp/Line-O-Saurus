@@ -24,6 +24,6 @@ jobs:
       - uses: scapeville/action-ExecuShell@v1
         with:
           dir: ${{ inputs.dir }}
-          git-name: your name
-          git-email: your@email
+          git-name: ExecuShell
+          git-email: nicho@scapeville.com
           recursive: ${{ inputs.recursive }}
