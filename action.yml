@@ -39,15 +39,15 @@ runs:
         cd $GITHUB_WORKSPACE/../workspace
 
         echo "::group::ls $(pwd)"
-        ls $(pwd)
+        ls
         echo "::endgroup::"
 
         for url in $URLS; do
-          git clone url
+          git clone $url
         done
 
         echo "::group::ls $(pwd)"
-        ls $(pwd)
+        ls
         echo "::endgroup::"
     - uses: actions/checkout@v3
     - shell: bash
