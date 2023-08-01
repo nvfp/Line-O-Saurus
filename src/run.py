@@ -3,7 +3,9 @@ import re
 from datetime import datetime
 
 from mykit.kit.text import byteFmt
+from mykit.kit.utils import printer
 
+from src.constants import NON_TEXT
 from src.get_options import get_options
 
 
@@ -24,7 +26,12 @@ def engine(WORKSPACE_DIR, OPTIONS):
         for i in os.listdir(path):
             p = os.path.join(path, i)
             if os.path.isfile(p):
-                with open(p, 'r', encoding='utf-8') as f: line += len(f.read().split('\n'))
+                ext = os.path.splitext(p)[1]
+                if ext not in NON_TEXT:
+                    try:
+                        with open(p, 'r', encoding='utf-8') as f: line += len(f.read().split('\n'))
+                    except Exception as err:
+                        printer(f'ERROR: path: {repr(p)}  err: {err}')
                 size += os.path.getsize(p)
             else:
                 _line, _size = rec(p)
