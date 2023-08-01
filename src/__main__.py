@@ -1,13 +1,9 @@
 import argparse
 import os
-import subprocess as sp
 import sys
 
 ## Make all dirs under the project's root dir importable
 sys.path.append(os.environ['GITHUB_ACTION_PATH'])
-
-## Installing dependencies
-sp.run(['pip', 'install', 'mykit==6.0.0'])
 
 from src.get_clone_urls import get_clone_urls
 from src.run import run

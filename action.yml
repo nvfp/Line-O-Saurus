@@ -46,6 +46,8 @@ inputs:
 runs:
   using: 'composite'
   steps:      
+    - run: pip install mykit==6.0.0
+      shell: bash
     - run: $GITHUB_ACTION_PATH/src/cloning.sh
       shell: bash
     - uses: actions/checkout@v3
