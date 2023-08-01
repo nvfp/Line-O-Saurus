@@ -33,7 +33,7 @@ def engine(WORKSPACE_DIR, OPTIONS):
         return line, size
     
     for repo in os.listdir(WORKSPACE_DIR):
-        repo_path = os.path.join(repo)
+        repo_path = os.path.join(WORKSPACE_DIR, repo)
         LINE, SIZE = rec(repo_path)
         total_line += LINE
         total_size += SIZE
