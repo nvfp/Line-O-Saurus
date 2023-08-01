@@ -1,5 +1,5 @@
-name: lineosaurus
-description: let's count
+name: Lineosaurus
+description: Let's count!
 author: Nicholas Valentinus
 branding:
   icon: align-justify
@@ -11,12 +11,12 @@ inputs:
   git-email:
     description: Git email
   show-credit:
-    description: show the credit
+    description: Show the credit
     default: true
-  only_type:
+  only-type:
     description: "['.py', '.js']"
     default: null
-  ignore_type:
+  ignore-type:
     description: "['.py', '.js']"
     default: null
   header:
@@ -38,46 +38,22 @@ inputs:
 runs:
   using: 'composite'
   steps:      
-    - shell: bash
-      run: |
-        RAW=$(gh repo list $GITHUB_ACTOR --visibility public --json url)
-        NUM=$(python $GITHUB_ACTION_PATH/src get-num-repos $RAW)
-        URLS=$(python $GITHUB_ACTION_PATH/src get-clone-urls $RAW)
-
-        echo "::group::DEBUG: RAW:"
-        echo $RAW
-        echo "::endgroup::"
-        echo "::group::DEBUG"
-        echo "NUM: '$NUM'"
-        for url in $URLS; do
-          echo "URL: '$url'"
-        done
-        echo "::endgroup::"
-
-        echo "::group::Cloning"
-        ## Folder to store all the cloned repositories
-        mkdir $GITHUB_WORKSPACE/../workspace
-        cd $GITHUB_WORKSPACE/../workspace
-
-
-        echo "::endgroup::"
-
-        # echo "::group::ls $(pwd)"
-        # ls
-        # echo "::endgroup::"
-
-        # for url in $URLS; do
-        #   git clone $url
-        # done
-
-        # echo "::group::ls $(pwd)"
-        # ls
-        # echo "::endgroup::"
-    # - uses: actions/checkout@v3
-    # - shell: bash
-    #   run: ls
-    # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
-    #   with:
-    #     name: ${{ env.git-name }}
-    #     email: ${{ env.git-email }}
-    #     msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
+    - run: $GITHUB_ACTION_PATH/src/cloning.sh
+      shell: bash
+    - uses: actions/checkout@v3
+    - run: python $GITHUB_ACTION_PATH/src run
+      shell: bash
+      env:
+        SHOW_CREDIT: ${{ inputs.show-credit }}
+        ONLY_TYPE: ${{ inputs.only-type }}
+        IGNORE_TYPE: ${{ inputs.ignore-type }}
+        HEADER: ${{ inputs.header }}
+        FOOTER: ${{ inputs.footer }}
+        CUSTOM_TITLE: ${{ inputs.custom-title }}
+        NUM_SHOWN: ${{ inputs.num-shown }}
+        SHOW_APPROX: ${{ inputs.show-approx }}
+    - uses: scapeville/action-git-add-all-then-commit-then-push@v1
+      with:
+        name: ${{ env.git-name }}
+        email: ${{ env.git-email }}
+        msg: "Updated on $(date +'%Y %b %e, %l:%M %p')"
