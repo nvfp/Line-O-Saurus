@@ -1,6 +1,5 @@
 import os
 import re
-import subprocess as sp
 from datetime import datetime
 
 from mykit.kit.text import byteFmt
@@ -81,9 +80,6 @@ Counted by [Line-O-Saurus](https://github.com/nvfp/Line-O-Saurus)🦕
 
 
 def run():
-
-    ## Installing dependencies
-    sp.run(['pip', 'install', 'mykit==6.0.0'])
 
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
     WORKSPACE_DIR = os.path.abspath(os.path.join(REPO_ROOT_DIR, '..', 'lineosaurus-workspace'))
