@@ -2,6 +2,8 @@ import json
 import os
 import re
 
+from src.constants import CARDS
+
 
 ## The default values are given for testing purposes
 def get_options(
@@ -89,7 +91,7 @@ def get_options(
             if (type(card_titles) is not dict) or (len(card_titles) == 0):
                 raise AssertionError('Invalid card-titles value.')
             for k, v in card_titles.items():
-                if (k not in ['line', 'lang', 'stat']) or (type(v) is not str):
+                if (k not in CARDS) or (type(v) is not str):
                     raise AssertionError('Invalid card-titles value.')
             OPTIONS.CARD_TITLES = card_titles
         except json.decoder.JSONDecodeError:
@@ -103,7 +105,7 @@ def get_options(
             if (type(card_order) is not list) or (len(card_order) == 0):
                 raise AssertionError('Invalid card-order value.')
             for i in card_order:
-                if i not in ['line', 'lang', 'stat']:
+                if i not in CARDS:
                     raise AssertionError('Invalid card-order value.')
             if len(card_order) != len(set(card_order)):
                 raise AssertionError('Invalid card-order value.')  # Has duplicates
