@@ -31,11 +31,13 @@ runs:
         URLS=$(python $GITHUB_ACTION_PATH/src get-clone-urls $RAW)
 
         echo "::group::DEBUG: RAW:"
-        echo RAW
+        echo $RAW
         echo "::endgroup::"
         echo "::group::DEBUG"
         echo "NUM: '$NUM'"
-        echo "URLS: '$URLS'"
+        for ((i=0; i<${#URLS[@]}; i++)); do
+          echo "$((i+1)): ${URLS[i]}"
+        done
         echo "::endgroup::"
 
         # mkdir $GITHUB_WORKSPACE/../workspace
