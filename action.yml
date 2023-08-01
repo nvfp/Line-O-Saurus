@@ -28,30 +28,31 @@ runs:
       env:
         SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
-        x=$(gh repo list nvfp --visibility public --json url)
-        y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
-        URLS=$(python $GITHUB_ACTION_PATH/src get-clone-urls $x)
-        echo "x: '$x'"
-        echo "y: '$y'"
-        echo "URLS: '$URLS'"
+        echo "$GITHUB_ACTOR"
+        # x=$(gh repo list nvfp --visibility public --json url)
+        # y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
+        # URLS=$(python $GITHUB_ACTION_PATH/src get-clone-urls $x)
+        # echo "x: '$x'"
+        # echo "y: '$y'"
+        # echo "URLS: '$URLS'"
 
-        mkdir $GITHUB_WORKSPACE/../workspace
-        cd $GITHUB_WORKSPACE/../workspace
+        # mkdir $GITHUB_WORKSPACE/../workspace
+        # cd $GITHUB_WORKSPACE/../workspace
 
-        echo "::group::ls $(pwd)"
-        ls
-        echo "::endgroup::"
+        # echo "::group::ls $(pwd)"
+        # ls
+        # echo "::endgroup::"
 
-        for url in $URLS; do
-          git clone $url
-        done
+        # for url in $URLS; do
+        #   git clone $url
+        # done
 
-        echo "::group::ls $(pwd)"
-        ls
-        echo "::endgroup::"
-    - uses: actions/checkout@v3
-    - shell: bash
-      run: ls
+        # echo "::group::ls $(pwd)"
+        # ls
+        # echo "::endgroup::"
+    # - uses: actions/checkout@v3
+    # - shell: bash
+    #   run: ls
     # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
     #   with:
     #     name: ${{ env.git-name }}
