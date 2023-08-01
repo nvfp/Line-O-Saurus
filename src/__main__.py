@@ -6,6 +6,7 @@ import sys
 sys.path.append(os.environ['GITHUB_ACTION_PATH'])
 
 from src.get_num_repos import get_num_repos
+from src.get_clone_urls import get_clone_urls
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
     if args.cmd == 'get-num-repos':
         print(get_num_repos(args.raw))  # Output the result to the shell
     elif args.cmd == 'get-clone-urls':
-        print(repr(args.raw))
+        print('\n'.join(get_clone_urls(args.raw)))  # Output the result to the shell
     elif args.cmd == 'run':
         print(3)
 

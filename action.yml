@@ -30,8 +30,10 @@ runs:
       run: |
         x=$(gh repo list nvfp --visibility public --json url)
         y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
+        z=$(python $GITHUB_ACTION_PATH/src get-clone-urls $x)
         echo "x: '$x'"
         echo "y: '$y'"
+        echo "z: '$z'"
     # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
     #   with:
     #     name: ${{ env.git-name }}
