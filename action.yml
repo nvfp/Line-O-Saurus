@@ -25,10 +25,9 @@ runs:
   using: 'composite'
   steps:      
     - shell: bash
-      env:
-        SHOW_CREDIT: ${{ inputs.show-credit }}
       run: |
-        echo "$GITHUB_ACTOR"
+        echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+        echo "INPUT_ONLY_TYPE: $INPUT_ONLY_TYPE"
         # x=$(gh repo list nvfp --visibility public --json url)
         # y=$(python $GITHUB_ACTION_PATH/src get-num-repos $x)
         # URLS=$(python $GITHUB_ACTION_PATH/src get-clone-urls $x)
