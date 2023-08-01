@@ -12,12 +12,9 @@ inputs:
   git-email:
     description: Git email
     required: true
-  show-credit:
-    description: Show the credit
-    default: true
   only-type:
     description: "['.py', '.js']"
-    default: null
+    default: null  # Dev note: in YAML, `null` becomes `''` in Python.
   ignore-type:
     description: "['.py', '.js']"
     default: null
@@ -42,6 +39,9 @@ inputs:
   card-order:
     description: card order
     default: null
+  show-credit:
+    description: show the credit
+    default: true
 
 runs:
   using: 'composite'
@@ -52,7 +52,6 @@ runs:
     - run: python $GITHUB_ACTION_PATH/src run
       shell: bash
       env:
-        SHOW_CREDIT: ${{ inputs.show-credit }}
         ONLY_TYPE: ${{ inputs.only-type }}
         IGNORE_TYPE: ${{ inputs.ignore-type }}
         HEADER: ${{ inputs.header }}
@@ -62,6 +61,7 @@ runs:
         SHOW_APPROX: ${{ inputs.show-approx }}
         CARD_TITLES: ${{ inputs.card-titles }}
         CARD_ORDER: ${{ inputs.card-order }}
+        SHOW_CREDIT: ${{ inputs.show-credit }}
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
         name: ${{ inputs.git-name }}

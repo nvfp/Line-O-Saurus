@@ -23,7 +23,6 @@ def run():
     WORKSPACE_DIR = os.path.abspath(os.path.join(REPO_ROOT_DIR, '..', 'lineosaurus-workspace'))
 
     OPTIONS = get_options(
-        os.environ['SHOW_CREDIT'],
         os.environ['ONLY_TYPE'],
         os.environ['IGNORE_TYPE'],
         os.environ['HEADER'],
@@ -33,6 +32,7 @@ def run():
         os.environ['SHOW_APPROX'],
         os.environ['CARD_TITLES'],
         os.environ['CARD_ORDER'],
+        os.environ['SHOW_CREDIT'],
     )
 
     README = get_readme(REPO_ROOT_DIR)

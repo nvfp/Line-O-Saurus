@@ -1,57 +1,121 @@
+import json
+import os
+import re
 
 
 ## The default values are given for testing purposes
 def get_options(
-    SHOW_CREDIT,
-    ONLY_TYPE,
-    IGNORE_TYPE,
-    HEADER,
-    FOOTER,
-    CUSTOM_TITLE,
-    NUM_SHOWN,
-    SHOW_APPROX,
-    CARD_TITLES,
-    CARD_ORDER,
-
-    # SHOW_CREDIT='true',
-    # ONLY_TYPE='null',
-    # IGNORE_TYPE='null',
-    # HEADER='null',
-    # FOOTER='null',
-    # CUSTOM_TITLE='null',
-    # NUM_SHOWN='5',
-    # SHOW_APPROX='true',
-    # CARD_TITLES='null',
-    # CARD_ORDER='null',
+    ONLY_TYPE='',
+    IGNORE_TYPE='',
+    HEADER='',
+    FOOTER='',
+    CUSTOM_TITLE='',
+    NUM_SHOWN='5',
+    SHOW_APPROX='true',
+    CARD_TITLES='',
+    CARD_ORDER='',
+    SHOW_CREDIT='true',
 ):
     class OPTIONS: ...
 
-    # if SHOW_CREDIT == 'true':
-    #     OPTIONS.SHOW_CREDIT = True
-    # elif SHOW_CREDIT == 'false':
-    #     OPTIONS.SHOW_CREDIT = False
-    # else:
-    #     raise AssertionError('Invalid show-credit value.')
+    if ONLY_TYPE == '':
+        OPTIONS.ONLY_TYPE = None
+    else:
+        try:
+            only_type = json.loads(ONLY_TYPE)
+            if (type(only_type) is not list) or (len(only_type) == 0):
+                raise AssertionError('Invalid only-type value.')
+            for i in only_type:
+                if type(i) is not str:
+                    raise AssertionError('Invalid only-type value.')
+                if not re.match(r'^\.\w+$', i):
+                    raise AssertionError('Invalid only-type value.')
+            OPTIONS.ONLY_TYPE = only_type
+        except json.decoder.JSONDecodeError:
+            raise AssertionError('Invalid only-type value.')
 
-    print(f'SHOW_CREDIT: {repr(SHOW_CREDIT)}')
-    print(f'ONLY_TYPE: {repr(ONLY_TYPE)}')
-    print(f'IGNORE_TYPE: {repr(IGNORE_TYPE)}')
-    print(f'HEADER: {repr(HEADER)}')
-    print(f'FOOTER: {repr(FOOTER)}')
-    print(f'CUSTOM_TITLE: {repr(CUSTOM_TITLE)}')
-    print(f'NUM_SHOWN: {repr(NUM_SHOWN)}')
-    print(f'SHOW_APPROX: {repr(SHOW_APPROX)}')
-    print(f'CARD_TITLES: {repr(CARD_TITLES)}')
-    print(f'CARD_ORDER: {repr(CARD_ORDER)}')
-    print(f'SHOW_CREDIT: {type(SHOW_CREDIT)}')
-    print(f'ONLY_TYPE: {type(ONLY_TYPE)}')
-    print(f'IGNORE_TYPE: {type(IGNORE_TYPE)}')
-    print(f'HEADER: {type(HEADER)}')
-    print(f'FOOTER: {type(FOOTER)}')
-    print(f'CUSTOM_TITLE: {type(CUSTOM_TITLE)}')
-    print(f'NUM_SHOWN: {type(NUM_SHOWN)}')
-    print(f'SHOW_APPROX: {type(SHOW_APPROX)}')
-    print(f'CARD_TITLES: {type(CARD_TITLES)}')
-    print(f'CARD_ORDER: {type(CARD_ORDER)}')
+    if IGNORE_TYPE == '':
+        OPTIONS.IGNORE_TYPE = None
+    else:
+        try:
+            ignore_type = json.loads(IGNORE_TYPE)
+            if (type(ignore_type) is not list) or (len(ignore_type) == 0):
+                raise AssertionError('Invalid ignore-type value.')
+            for i in ignore_type:
+                if type(i) is not str:
+                    raise AssertionError('Invalid ignore-type value.')
+                if not re.match(r'^\.\w+$', i):
+                    raise AssertionError('Invalid ignore-type value.')
+            OPTIONS.IGNORE_TYPE = ignore_type
+        except json.decoder.JSONDecodeError:
+            raise AssertionError('Invalid ignore-type value.')
     
+    if HEADER == '':
+        OPTIONS.HEADER = None
+    else:
+        if not os.path.isfile(HEADER):
+            raise AssertionError('Invalid header value.')
+        OPTIONS.HEADER = os.path.abspath(HEADER)
+    
+    if FOOTER == '':
+        OPTIONS.FOOTER = None
+    else:
+        if not os.path.isfile(FOOTER):
+            raise AssertionError('Invalid footer value.')
+        OPTIONS.FOOTER = os.path.abspath(FOOTER)
+
+    OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
+
+    try:
+        num_shown = int(NUM_SHOWN)
+        if num_shown < 1:
+            raise AssertionError('Invalid num-shown value.')
+        OPTIONS.NUM_SHOWN = num_shown
+    except ValueError:
+        raise AssertionError('Invalid num-shown value.')
+
+    if SHOW_APPROX == 'true':
+        OPTIONS.SHOW_APPROX = True
+    elif SHOW_APPROX == 'false':
+        OPTIONS.SHOW_APPROX = False
+    else:
+        raise AssertionError('Invalid show-approx value.')
+
+    if CARD_TITLES == '':
+        OPTIONS.CARD_TITLES = None
+    else:
+        try:
+            card_titles = json.loads(CARD_TITLES)
+            if (type(card_titles) is not dict) or (len(card_titles) == 0):
+                raise AssertionError('Invalid card-titles value.')
+            for k, v in card_titles.items():
+                if (k not in ['line', 'lang', 'stat']) or (type(v) is not str):
+                    raise AssertionError('Invalid card-titles value.')
+            OPTIONS.CARD_TITLES = card_titles
+        except json.decoder.JSONDecodeError:
+            raise AssertionError('Invalid card-titles value.')
+
+    if CARD_ORDER == '':
+        OPTIONS.CARD_ORDER = None
+    else:
+        try:
+            card_order = json.loads(CARD_ORDER)
+            if (type(card_order) is not list) or (len(card_order) == 0):
+                raise AssertionError('Invalid card-order value.')
+            for i in card_order:
+                if i not in ['line', 'lang', 'stat']:
+                    raise AssertionError('Invalid card-order value.')
+            if len(card_order) != len(set(card_order)):
+                raise AssertionError('Invalid card-order value.')  # Has duplicates
+            OPTIONS.CARD_ORDER = card_order
+        except json.decoder.JSONDecodeError:
+            raise AssertionError('Invalid card-order value.')
+
+    if SHOW_CREDIT == 'true':
+        OPTIONS.SHOW_CREDIT = True
+    elif SHOW_CREDIT == 'false':
+        OPTIONS.SHOW_CREDIT = False
+    else:
+        raise AssertionError('Invalid show-credit value.')
+
     return OPTIONS
