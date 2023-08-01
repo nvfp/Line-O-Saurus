@@ -93,7 +93,8 @@ class TestGetOptions(unittest.TestCase):
         ## Pass
         get_options(CARD_TITLES='{"line": "foo"}')
         get_options(CARD_TITLES='{"line": "foo", "stat": "bar"}')
-        get_options(CARD_TITLES='{"line": "foo", "lang": "bar", "stat": "# baz"}')
+        get_options(CARD_TITLES='{"size": "foo", "type": "bar"}')
+        get_options(CARD_TITLES='{"line": "foo", "type": "bar", "stat": "# baz", "size": "**boo**"}')
         
         ## Fail
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_TITLES='true')
@@ -114,8 +115,9 @@ class TestGetOptions(unittest.TestCase):
         ## Pass
         get_options(CARD_ORDER='["line"]')
         get_options(CARD_ORDER='["line", "stat"]')
-        get_options(CARD_ORDER='["line", "lang", "stat"]')
-        get_options(CARD_ORDER='["lang", "stat", "line"]')
+        get_options(CARD_ORDER='["line", "type", "stat"]')
+        get_options(CARD_ORDER='["type", "stat", "line"]')
+        get_options(CARD_ORDER='["type", "stat", "line", "size"]')
 
         ## Fail
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='true')
@@ -128,7 +130,7 @@ class TestGetOptions(unittest.TestCase):
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "foo"]')
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
-        with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "lang", "line"]')
+        with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "type", "line"]')
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
 
     def test_show_credit(self):
