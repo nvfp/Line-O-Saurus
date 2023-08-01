@@ -129,7 +129,7 @@ class TestGetOptions(unittest.TestCase):
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "foo"]')
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "lang", "line"]')
-        self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
+        self.assertEqual(str(ctx.exception), 'Invalid card-order value..')
 
     def test_show_credit(self):
 
@@ -139,7 +139,7 @@ class TestGetOptions(unittest.TestCase):
         
         ## Fail
         with self.assertRaises(AssertionError) as ctx: get_options(SHOW_CREDIT='')
-        self.assertEqual(str(ctx.exception), 'Invalid show-credit value.')
+        self.assertEqual(str(ctx.exception), 'Invalid show-credit value..')
         with self.assertRaises(AssertionError) as ctx: get_options(SHOW_CREDIT='123')
         self.assertEqual(str(ctx.exception), 'Invalid show-credit value.')
         with self.assertRaises(AssertionError) as ctx: get_options(SHOW_CREDIT='[1, 2, 3]')
