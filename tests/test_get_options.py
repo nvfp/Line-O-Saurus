@@ -46,19 +46,19 @@ class TestGetOptions(unittest.TestCase):
     def test_header(self):
         
         ## Pass
-        get_options(HEADER=__file__)
+        get_options(HEADER='README.md')
         
         ## Fail
-        with self.assertRaises(AssertionError) as ctx: get_options(HEADER='foo')
+        with self.assertRaises(AssertionError) as ctx: get_options(HEADER='non-existing-file-124124141513414')
         self.assertEqual(str(ctx.exception), 'Invalid header value.')
     
     def test_footer(self):
         
         ## Pass
-        get_options(FOOTER=__file__)
+        get_options(FOOTER='README.md')
         
         ## Fail
-        with self.assertRaises(AssertionError) as ctx: get_options(FOOTER='foo')
+        with self.assertRaises(AssertionError) as ctx: get_options(FOOTER='non-existing-file-737356452535235')
         self.assertEqual(str(ctx.exception), 'Invalid footer value.')
     
     def test_num_shown(self):

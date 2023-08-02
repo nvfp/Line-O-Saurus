@@ -18,6 +18,9 @@ def get_options(
     CARD_ORDER='',
     SHOW_CREDIT='true',
 ):
+    
+    REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
+
     class OPTIONS: ...
 
     if ONLY_TYPE == '':
@@ -55,16 +58,18 @@ def get_options(
     if HEADER == '':
         OPTIONS.HEADER = None
     else:
-        if not os.path.isfile(HEADER):
+        header = os.path.join(REPO_ROOT_DIR, HEADER)
+        if not os.path.isfile(header):
             raise AssertionError('Invalid header value.')
-        OPTIONS.HEADER = os.path.abspath(HEADER)
+        OPTIONS.HEADER = header
     
     if FOOTER == '':
         OPTIONS.FOOTER = None
     else:
-        if not os.path.isfile(FOOTER):
+        footer = os.path.join(REPO_ROOT_DIR, FOOTER)
+        if not os.path.isfile(footer):
             raise AssertionError('Invalid footer value.')
-        OPTIONS.FOOTER = os.path.abspath(FOOTER)
+        OPTIONS.FOOTER = footer
 
     OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
 
