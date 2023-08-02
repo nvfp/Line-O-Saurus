@@ -19,7 +19,7 @@ inputs:
     description: "['.py', '.js']"
     default: null
   header:
-    description: Header
+    description: Header (relative to repo root)
     default: null
   footer:
     description: Footer

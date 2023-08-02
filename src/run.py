@@ -20,6 +20,7 @@ def get_readme(REPO_ROOT_DIR):
 def engine(WORKSPACE_DIR, OPTIONS):
 
     total_pub_repos, total_line, total_size = 0, 0, 0
+    pool = {}
 
     def rec(path):
         line, size = 0, 0
@@ -47,6 +48,10 @@ def engine(WORKSPACE_DIR, OPTIONS):
         LINE, SIZE = rec(repo_path)
         total_line += LINE
         total_size += SIZE
+        pool[repo] = {
+            'line': LINE,
+            'line': LINE,
+        }
 
     return f'{total_line} {byteFmt(total_size)}  {total_pub_repos}'
     text = f"""
@@ -68,7 +73,7 @@ abcd-12312  ▆                                 132,412 lines
 .py      ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  90%  13k lines
 .ts      ▆▆▆▆▆▆                        43%  43k lines
 .tx      ▆                                 43%  22k lines
-.foobar  ▆                                 43%  1k lines
+.foobar  ▆                                 43%   1k lines
 .scsc    ▆                                 43%  433 lines
 ```
 
