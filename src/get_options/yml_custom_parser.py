@@ -42,7 +42,7 @@ def parse_dict(raw_str):
       x: foo
       y: bar
     """
-    d = []
+    d = {}
     for line in raw_str.split('\n'):
         if line == '': continue  # Handle the ending '\n'
         res = re.search(r'^-?[ ]*(?P<key>\w+):[ ]*(?P<val>.+)$', line)

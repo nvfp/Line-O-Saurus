@@ -30,7 +30,7 @@ class TestGetOptions(unittest.TestCase):
         self.assertEqual(OPT.ONLY_TYPE, ['.foo', '.bar'])
 
         OPT = get_options(ONLY_TYPE='.foo\n')
-        self.assertEqual(OPT.ONLY_TYPE, ['.foo', '.bar'])
+        self.assertEqual(OPT.ONLY_TYPE, ['.foo'])
 
         OPT = get_options(ONLY_TYPE='.foo\n.bar\n')
         self.assertEqual(OPT.ONLY_TYPE, ['.foo', '.bar'])
@@ -67,8 +67,9 @@ class TestGetOptions(unittest.TestCase):
         self.assertEqual(OPT.HEADER, '')
 
         OPT = get_options(HEADER='README.md')
-        self.assertEqual(OPT.HEADER, os.path.join(os.environ['GITHUB_WORKSPACE'], 'README.md'))
-        
+        with open(os.path.join(os.environ['GITHUB_WORKSPACE'], 'README.md'), 'r') as f: text = f.read()
+        self.assertEqual(OPT.HEADER, text)
+
         ## Fails
 
         with self.assertRaises(AssertionError) as ctx: get_options(HEADER='non-existing-file-124124141513414')
@@ -196,8 +197,8 @@ class TestGetOptions(unittest.TestCase):
         OPT = get_options(CARD_ORDER='["line", "stat"]')
         self.assertEqual(OPT.CARD_ORDER, ['line', 'stat'])
         
-        OPT = get_options(CARD_ORDER='["line", "type", "size", "stat", "size", "char", "star", "cmit"]')
-        self.assertEqual(OPT.CARD_ORDER, ['line', 'type', 'size', 'stat', 'size', 'char', 'star', 'cmit'])
+        OPT = get_options(CARD_ORDER='["line", "type", "size", "stat", "char", "star", "cmit"]')
+        self.assertEqual(OPT.CARD_ORDER, ['line', 'type', 'size', 'stat', 'char', 'star', 'cmit'])
         
         OPT = get_options(CARD_ORDER='line\n')
         self.assertEqual(OPT.CARD_ORDER, ['line'])
