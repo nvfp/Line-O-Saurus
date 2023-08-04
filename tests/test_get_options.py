@@ -95,6 +95,7 @@ class TestGetOptions(unittest.TestCase):
         get_options(CARD_TITLES='{"line": "foo", "stat": "bar"}')
         get_options(CARD_TITLES='{"size": "foo", "type": "bar"}')
         get_options(CARD_TITLES='{"line": "foo", "type": "bar", "stat": "# baz", "size": "**boo**"}')
+        get_options(CARD_TITLES='{"size": "foo", "char": "bar", "star": "2", "cmit": "3"}')
         
         ## Fail
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_TITLES='true')
@@ -118,6 +119,7 @@ class TestGetOptions(unittest.TestCase):
         get_options(CARD_ORDER='["line", "type", "stat"]')
         get_options(CARD_ORDER='["type", "stat", "line"]')
         get_options(CARD_ORDER='["type", "stat", "line", "size"]')
+        get_options(CARD_ORDER='["char", "star", "cmit", "size"]')
 
         ## Fail
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='true')
@@ -132,6 +134,20 @@ class TestGetOptions(unittest.TestCase):
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
         with self.assertRaises(AssertionError) as ctx: get_options(CARD_ORDER='["line", "type", "line"]')
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
+
+    def test_prefer_extension(self):
+
+        ## Pass
+        get_options(PREFER_EXTENSION='true')
+        get_options(PREFER_EXTENSION='false')
+        
+        ## Fail
+        with self.assertRaises(AssertionError) as ctx: get_options(PREFER_EXTENSION='')
+        self.assertEqual(str(ctx.exception), 'Invalid prefer-extension value.')
+        with self.assertRaises(AssertionError) as ctx: get_options(PREFER_EXTENSION='123')
+        self.assertEqual(str(ctx.exception), 'Invalid prefer-extension value.')
+        with self.assertRaises(AssertionError) as ctx: get_options(PREFER_EXTENSION='[1, 2, 3]')
+        self.assertEqual(str(ctx.exception), 'Invalid prefer-extension value.')
 
     def test_show_credit(self):
 

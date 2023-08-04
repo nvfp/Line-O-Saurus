@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 
 from mykit.kit.text import byteFmt
-from mykit.kit.utils import printer
+from mykit.kit.pLog import pL
 
 from src.constants import NON_TEXT_TYPE, NON_TEXT_FILENAME
 from src.get_options import get_options
@@ -11,7 +11,7 @@ from src.get_options import get_options
 
 def get_readme(REPO_ROOT_DIR):
     for i, j in enumerate(os.listdir(REPO_ROOT_DIR), 1):
-        print(f'DEBUG: {str(i).zfill(2)}: {repr(j)}')
+        pL.debug(f'{str(i).zfill(2)}: {repr(j)}')
         if re.match(r'^readme\.md$', j, re.IGNORECASE):
             return os.path.join(REPO_ROOT_DIR, j)
     raise FileNotFoundError('README.md not found.')
@@ -34,7 +34,7 @@ def engine(WORKSPACE_DIR, OPTIONS):
                     try:
                         with open(file_path, 'r', encoding='utf-8') as f: line += len(f.read().split('\n'))
                     except Exception as err:
-                        printer(f'ERROR: path: {repr(file_path)}  err: {err}')
+                        pL.error(f'path: {repr(file_path)}  err: {err}')
                 size += os.path.getsize(file_path)
             else:
                 _line, _size = rec(file_path)
@@ -77,6 +77,26 @@ abcd-12312  ▆                                 132,412 lines
 .scsc    ▆                                 43%  433 lines
 ```
 
+### sizes
+
+```css
+.py      ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  90%  13k lines
+.ts      ▆▆▆▆▆▆                        43%  43k lines
+.tx      ▆                                 43%  22k lines
+.foobar  ▆                                 43%   1k lines
+.scsc    ▆                                 43%  433 lines
+```
+
+### commits
+
+```css
+.py      ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  90%  13k lines
+.ts      ▆▆▆▆▆▆                        43%  43k lines
+.tx      ▆                                 43%  22k lines
+.foobar  ▆                                 43%   1k lines
+.scsc    ▆                                 43%  433 lines
+```
+
 ### Statistics
 
 ```markdown
@@ -109,11 +129,13 @@ def run():
         os.environ['SHOW_APPROX'],
         os.environ['CARD_TITLES'],
         os.environ['CARD_ORDER'],
+        os.environ['PREFER_EXTENSION'],
         os.environ['SHOW_CREDIT'],
     )
 
     README = get_readme(REPO_ROOT_DIR)
-    TEXT = engine(WORKSPACE_DIR, OPTIONS)
+    # TEXT = engine(WORKSPACE_DIR, OPTIONS)
+    TEXT = OPTIONS.CUSTOM_TITLE
 
     with open(README, 'w') as f:
         f.write(TEXT)

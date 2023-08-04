@@ -1,6 +1,6 @@
 
 
-CARDS = ['line', 'type', 'size', 'stat']
+CARDS = ['line', 'type', 'size', 'stat', 'size', 'char', 'star', 'cmit']
 
 NON_TEXT_TYPE = [
 

@@ -2,6 +2,8 @@ import json
 import os
 import re
 
+from mykit.kit.pLog import pL
+
 from src.constants import CARDS
 
 
@@ -16,13 +18,27 @@ def get_options(
     SHOW_APPROX='true',
     CARD_TITLES='',
     CARD_ORDER='',
+    PREFER_EXTENSION='true',
     SHOW_CREDIT='true',
 ):
     
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
 
+    pL.debug(f'ONLY_TYPE . . . : {repr(ONLY_TYPE)}.')
+    pL.debug(f'IGNORE_TYPE . . : {repr(IGNORE_TYPE)}.')
+    pL.debug(f'HEADER  . . . . : {repr(HEADER)}.')
+    pL.debug(f'FOOTER  . . . . : {repr(FOOTER)}.')
+    pL.debug(f'CUSTOM_TITLE    : {repr(CUSTOM_TITLE)}.')
+    pL.debug(f'NUM_SHOWN . . . : {repr(NUM_SHOWN)}.')
+    pL.debug(f'SHOW_APPROX . . : {repr(SHOW_APPROX)}.')
+    pL.debug(f'CARD_TITLES . . : {repr(CARD_TITLES)}.')
+    pL.debug(f'CARD_ORDER  . . : {repr(CARD_ORDER)}.')
+    pL.debug(f'PREFER_EXTENSION: {repr(PREFER_EXTENSION)}.')
+    pL.debug(f'SHOW_CREDIT . . : {repr(SHOW_CREDIT)}.')
+
     class OPTIONS: ...
 
+    ## only-type
     if ONLY_TYPE == '':
         OPTIONS.ONLY_TYPE = None
     else:
@@ -39,6 +55,7 @@ def get_options(
         except json.decoder.JSONDecodeError:
             raise AssertionError('Invalid only-type value.')
 
+    ## ignore-type
     if IGNORE_TYPE == '':
         OPTIONS.IGNORE_TYPE = None
     else:
@@ -55,24 +72,34 @@ def get_options(
         except json.decoder.JSONDecodeError:
             raise AssertionError('Invalid ignore-type value.')
     
+    ## header
     if HEADER == '':
-        OPTIONS.HEADER = None
+        OPTIONS.HEADER = ''
     else:
         header = os.path.join(REPO_ROOT_DIR, HEADER)
         if not os.path.isfile(header):
             raise AssertionError('Invalid header value.')
-        OPTIONS.HEADER = header
+        with open(header, 'r') as f:
+            OPTIONS.HEADER = f.read()
     
+    ## footer
     if FOOTER == '':
-        OPTIONS.FOOTER = None
+        OPTIONS.FOOTER = ''
     else:
         footer = os.path.join(REPO_ROOT_DIR, FOOTER)
         if not os.path.isfile(footer):
             raise AssertionError('Invalid footer value.')
-        OPTIONS.FOOTER = footer
+        with open(footer, 'r') as f:
+            OPTIONS.FOOTER = f.read()
 
-    OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
+    ## custom-title
+    if CUSTOM_TITLE == '':
+        ## This default is mirroring the one in the README
+        OPTIONS.CUSTOM_TITLE = "(_DATE_) _LINE_ lines of code stretch through _OWNER_'s repositories."
+    else:
+        OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
 
+    ## num-shown
     try:
         num_shown = int(NUM_SHOWN)
         if num_shown < 1:
@@ -81,6 +108,7 @@ def get_options(
     except ValueError:
         raise AssertionError('Invalid num-shown value.')
 
+    ## show-approx
     if SHOW_APPROX == 'true':
         OPTIONS.SHOW_APPROX = True
     elif SHOW_APPROX == 'false':
@@ -88,8 +116,15 @@ def get_options(
     else:
         raise AssertionError('Invalid show-approx value.')
 
+    ## card-titles
     if CARD_TITLES == '':
-        OPTIONS.CARD_TITLES = None
+        ## This default is mirroring the one in the README
+        OPTIONS.CARD_TITLES = {
+            'line': "Lines of code",
+            'type': "Languages",
+            'star': "Stargazers",
+            'stat': "_OWNER_'s statistics",
+        }
     else:
         try:
             card_titles = json.loads(CARD_TITLES)
@@ -102,8 +137,10 @@ def get_options(
         except json.decoder.JSONDecodeError:
             raise AssertionError('Invalid card-titles value.')
 
+    ## card-order
     if CARD_ORDER == '':
-        OPTIONS.CARD_ORDER = None
+        ## This default is mirroring the one in the README
+        OPTIONS.CARD_ORDER = ['line', 'type', 'star', 'stat']
     else:
         try:
             card_order = json.loads(CARD_ORDER)
@@ -118,6 +155,15 @@ def get_options(
         except json.decoder.JSONDecodeError:
             raise AssertionError('Invalid card-order value.')
 
+    ## show-credit
+    if PREFER_EXTENSION == 'true':
+        OPTIONS.PREFER_EXTENSION = True
+    elif PREFER_EXTENSION == 'false':
+        OPTIONS.PREFER_EXTENSION = False
+    else:
+        raise AssertionError('Invalid prefer-extension value.')
+
+    ## show-credit
     if SHOW_CREDIT == 'true':
         OPTIONS.SHOW_CREDIT = True
     elif SHOW_CREDIT == 'false':

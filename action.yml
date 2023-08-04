@@ -29,7 +29,7 @@ inputs:
     default: null
   num-shown:
     description: Number
-    default: 5
+    default: 3
   show-approx:
     description: Approx
     default: true
@@ -39,6 +39,9 @@ inputs:
   card-order:
     description: card order
     default: null
+  prefer-extension:
+    description: ".py" instead of "Python"
+    default: true
   show-credit:
     description: show the credit
     default: true
@@ -46,7 +49,7 @@ inputs:
 runs:
   using: 'composite'
   steps:      
-    - run: pip install mykit==6.0.0
+    - run: pip install mykit==6.2.0
       shell: bash
     - run: $GITHUB_ACTION_PATH/src/cloning.sh
       shell: bash
@@ -63,6 +66,7 @@ runs:
         SHOW_APPROX: ${{ inputs.show-approx }}
         CARD_TITLES: ${{ inputs.card-titles }}
         CARD_ORDER: ${{ inputs.card-order }}
+        PREFER_EXTENSION: ${{ inputs.prefer-extension }}
         SHOW_CREDIT: ${{ inputs.show-credit }}
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
