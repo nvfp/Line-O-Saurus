@@ -2,9 +2,8 @@ import json
 import os
 import re
 
-from mykit.kit.pLog import pL
-
 from src.constants import CARDS
+from src.yml_list_dict_parser import parse_dict, parse_list
 
 
 ## The default values are given for testing purposes
@@ -24,26 +23,14 @@ def get_options(
     
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
 
-    pL.debug(f'ONLY_TYPE . . . : {repr(ONLY_TYPE)}.')
-    pL.debug(f'IGNORE_TYPE . . : {repr(IGNORE_TYPE)}.')
-    pL.debug(f'HEADER  . . . . : {repr(HEADER)}.')
-    pL.debug(f'FOOTER  . . . . : {repr(FOOTER)}.')
-    pL.debug(f'CUSTOM_TITLE    : {repr(CUSTOM_TITLE)}.')
-    pL.debug(f'NUM_SHOWN . . . : {repr(NUM_SHOWN)}.')
-    pL.debug(f'SHOW_APPROX . . : {repr(SHOW_APPROX)}.')
-    pL.debug(f'CARD_TITLES . . : {repr(CARD_TITLES)}.')
-    pL.debug(f'CARD_ORDER  . . : {repr(CARD_ORDER)}.')
-    pL.debug(f'PREFER_EXTENSION: {repr(PREFER_EXTENSION)}.')
-    pL.debug(f'SHOW_CREDIT . . : {repr(SHOW_CREDIT)}.')
-
     class OPTIONS: ...
 
     ## only-type
-    if ONLY_TYPE == '':
+    if ONLY_TYPE == '':  # If `null` in YAML
         OPTIONS.ONLY_TYPE = None
     else:
         try:
-            only_type = json.loads(ONLY_TYPE)
+            only_type = parse_list(ONLY_TYPE)
             if (type(only_type) is not list) or (len(only_type) == 0):
                 raise AssertionError('Invalid only-type value.')
             for i in only_type:
@@ -60,7 +47,7 @@ def get_options(
         OPTIONS.IGNORE_TYPE = None
     else:
         try:
-            ignore_type = json.loads(IGNORE_TYPE)
+            ignore_type = parse_list(IGNORE_TYPE)
             if (type(ignore_type) is not list) or (len(ignore_type) == 0):
                 raise AssertionError('Invalid ignore-type value.')
             for i in ignore_type:
@@ -127,7 +114,7 @@ def get_options(
         }
     else:
         try:
-            card_titles = json.loads(CARD_TITLES)
+            card_titles = parse_dict(CARD_TITLES)
             if (type(card_titles) is not dict) or (len(card_titles) == 0):
                 raise AssertionError('Invalid card-titles value.')
             for k, v in card_titles.items():
@@ -143,7 +130,7 @@ def get_options(
         OPTIONS.CARD_ORDER = ['line', 'type', 'star', 'stat']
     else:
         try:
-            card_order = json.loads(CARD_ORDER)
+            card_order = parse_list(CARD_ORDER)
             if (type(card_order) is not list) or (len(card_order) == 0):
                 raise AssertionError('Invalid card-order value.')
             for i in card_order:

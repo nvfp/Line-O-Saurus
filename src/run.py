@@ -119,6 +119,19 @@ def run():
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
     WORKSPACE_DIR = os.path.abspath(os.path.join(REPO_ROOT_DIR, '..', 'lineosaurus-workspace'))
 
+    ## Debugging purposes
+    pL.debug(f'ONLY_TYPE . . . : {repr(os.environ["ONLY_TYPE"])}.')
+    pL.debug(f'IGNORE_TYPE . . : {repr(os.environ["IGNORE_TYPE"])}.')
+    pL.debug(f'HEADER  . . . . : {repr(os.environ["HEADER"])}.')
+    pL.debug(f'FOOTER  . . . . : {repr(os.environ["FOOTER"])}.')
+    pL.debug(f'CUSTOM_TITLE    : {repr(os.environ["CUSTOM_TITLE"])}.')
+    pL.debug(f'NUM_SHOWN . . . : {repr(os.environ["NUM_SHOWN"])}.')
+    pL.debug(f'SHOW_APPROX . . : {repr(os.environ["SHOW_APPROX"])}.')
+    pL.debug(f'CARD_TITLES . . : {repr(os.environ["CARD_TITLES"])}.')
+    pL.debug(f'CARD_ORDER  . . : {repr(os.environ["CARD_ORDER"])}.')
+    pL.debug(f'PREFER_EXTENSION: {repr(os.environ["PREFER_EXTENSION"])}.')
+    pL.debug(f'SHOW_CREDIT . . : {repr(os.environ["SHOW_CREDIT"])}.')
+
     OPTIONS = get_options(
         os.environ['ONLY_TYPE'],
         os.environ['IGNORE_TYPE'],

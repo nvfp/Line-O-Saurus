@@ -16,8 +16,8 @@ class TestCardMaker(unittest.TestCase):
         result = card_maker(None, entries, align)
         expected = (
             'foo         43%  323,123 lines  XXXXXXXXXXXXXXX\n'
-            'foooooooo    3%      323 lines  XXXXXXX\n'
-            'a          100%        3 lines  XXXX'
+            'foooooooo    3%      323 lines  XXXXXXX        \n'
+            'a          100%        3 lines  XXXX           '
         )
         self.assertEqual(result, expected)
 
@@ -33,8 +33,8 @@ class TestCardMaker(unittest.TestCase):
         expected = (
             '# Foo bar\n\n'
             'foo         43%  323,123 lines  XXXXXXXXXXXXXXX\n'
-            'foooooooo    3%      323 lines  XXXXXXX\n'
-            'a          100%        3 lines  XXXX'
+            'foooooooo    3%      323 lines  XXXXXXX        \n'
+            'a          100%        3 lines  XXXX           '
         )
         self.assertEqual(result, expected)
 
