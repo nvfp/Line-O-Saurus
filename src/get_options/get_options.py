@@ -5,7 +5,7 @@ from src.constants import CARDS
 from get_options.yml_custom_parser import parse_dict, parse_list
 
 
-"""
+r"""
 Notes:
 
 In both of these cases, the value field is empty:
@@ -17,7 +17,7 @@ bar: |-
 `foo` and `bar` values will be evaluated as an empty string.
 
 
-Extra note: for custom-title, "|-" is recommended.
+Extra note: for custom-title, "|-" is recommended because it doesn't include the ending '\n'.
 """
 
 
@@ -96,8 +96,11 @@ def get_options(
 
     ## custom-title
     if CUSTOM_TITLE == '':
-        ## This default is mirroring the one in the README
-        OPTIONS.CUSTOM_TITLE = "(_DATE_) _LINE_ lines of code stretch through _OWNER_'s repositories."
+        ## This default should match the one in the README
+        OPTIONS.CUSTOM_TITLE = (
+            '~ Updated on _DATE_ ~\n'
+            "_LINE_ lines of code stretch through _OWNER_'s repositories."
+        )
     else:
         OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
 
@@ -120,7 +123,7 @@ def get_options(
 
     ## card-titles
     if CARD_TITLES == '':
-        ## This default is mirroring the one in the README
+        ## This default should match the one in the README
         OPTIONS.CARD_TITLES = {
             'line': "Lines of code",
             'type': "Languages",
@@ -141,7 +144,7 @@ def get_options(
 
     ## card-order
     if CARD_ORDER == '':
-        ## This default is mirroring the one in the README
+        ## This default should match the one in the README
         OPTIONS.CARD_ORDER = ['line', 'type', 'star', 'stat']
     else:
         try:
