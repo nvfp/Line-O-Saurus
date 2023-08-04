@@ -36,7 +36,7 @@ class Test__yml_custom_parser(unittest.TestCase):
         ## Fails
 
         with self.assertRaises(SyntaxError) as ctx: parse_dict('x\n')
-        self.assertEqual(str(ctx.exception), "Failed to parse 'x\n'.")
+        self.assertEqual(str(ctx.exception), r"Failed to parse 'x\n'.")
 
     def test_parse_list(self):
 
@@ -69,7 +69,7 @@ class Test__yml_custom_parser(unittest.TestCase):
         ## Fails
 
         with self.assertRaises(SyntaxError) as ctx: parse_list("['x', 'y']")  # JSON uses double quotes
-        self.assertEqual(str(ctx.exception), """Failed to parse "['x', 'y']".""")
+        self.assertEqual(str(ctx.exception), """Invalid syntax for "['x', 'y']".""")
 
 
 if __name__ == '__main__':
