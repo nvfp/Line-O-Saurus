@@ -11,7 +11,7 @@ from get_options.get_options import get_options
 
 def get_readme(REPO_ROOT_DIR):
     for i, j in enumerate(os.listdir(REPO_ROOT_DIR), 1):
-        pL.debug(f'{str(i).zfill(2)}: {repr(j)}')
+        pL.debug(f'Searching for README attempt#{str(i).zfill(2)}: {repr(j)}')
         if re.match(r'^readme\.md$', j, re.IGNORECASE):
             return os.path.join(REPO_ROOT_DIR, j)
     raise FileNotFoundError('README.md not found.')
@@ -145,6 +145,19 @@ def run():
         os.environ['PREFER_EXTENSION'],
         os.environ['SHOW_CREDIT'],
     )
+
+    ## Debugging purposes
+    pL.debug(f'OPTIONS.ONLY_TYPE . . . : {repr(OPTIONS.ONLY_TYPE)}.')
+    pL.debug(f'OPTIONS.IGNORE_TYPE . . : {repr(OPTIONS.IGNORE_TYPE)}.')
+    pL.debug(f'OPTIONS.HEADER  . . . . : {repr(OPTIONS.HEADER)}.')
+    pL.debug(f'OPTIONS.FOOTER  . . . . : {repr(OPTIONS.FOOTER)}.')
+    pL.debug(f'OPTIONS.CUSTOM_TITLE    : {repr(OPTIONS.CUSTOM_TITLE)}.')
+    pL.debug(f'OPTIONS.NUM_SHOWN . . . : {repr(OPTIONS.NUM_SHOWN)}.')
+    pL.debug(f'OPTIONS.SHOW_APPROX . . : {repr(OPTIONS.SHOW_APPROX)}.')
+    pL.debug(f'OPTIONS.CARD_TITLES . . : {repr(OPTIONS.CARD_TITLES)}.')
+    pL.debug(f'OPTIONS.CARD_ORDER  . . : {repr(OPTIONS.CARD_ORDER)}.')
+    pL.debug(f'OPTIONS.PREFER_EXTENSION: {repr(OPTIONS.PREFER_EXTENSION)}.')
+    pL.debug(f'OPTIONS.SHOW_CREDIT . . : {repr(OPTIONS.SHOW_CREDIT)}.')
 
     README = get_readme(REPO_ROOT_DIR)
     # TEXT = engine(WORKSPACE_DIR, OPTIONS)

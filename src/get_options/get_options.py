@@ -98,7 +98,7 @@ def get_options(
     if CUSTOM_TITLE == '':
         ## This default should match the one in the README
         OPTIONS.CUSTOM_TITLE = (
-            '~ Updated on _DATE_ ~\n'
+            '~ Updated on _DATE_ ~\n\n'
             "_LINE_ lines of code stretch through _OWNER_'s repositories."
         )
     else:

@@ -36,6 +36,7 @@ jobs:
           footer: null
           custom-title: |-
             ~ Updated on _DATE_ ~
+
             _LINE_ lines of code stretch through _OWNER_'s repositories.
           num-shown: 3
           show-approx: true
