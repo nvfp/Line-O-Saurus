@@ -8,7 +8,7 @@ def card_maker(title, entries, align):
 
     nrow = len(entries)     # Number of rows
     ncol = len(entries[0])  # Number of columns
-    lens = [max([entries[r][c] for r in range(nrow)]) for c in range(ncol)]  # Length of each column
+    lens = [max([len(entries[r][c]) for r in range(nrow)]) for c in range(ncol)]  # Length of each column
 
     lines = [] if title is None else [f'{title}\n']
 
