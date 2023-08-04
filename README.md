@@ -84,6 +84,22 @@ variable | description
 `_NUM_PUB_REPOS_` | number of public repo
 `_NUM_STARS_` | total stargazers
 
+### Variations
+
+```yml
+with:
+  git-name: your name
+  git-email: your@email
+  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
+  ignore-type: |
+    - .py
+    - .md
+  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
+  show-approx: true
+  card-titles: '{"line": "foo", "star": "bar"}'
+  card-order: '["line", "star"]'
+```
+
 
 ## License
 
