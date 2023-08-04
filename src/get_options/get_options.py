@@ -2,7 +2,7 @@ import os
 import re
 
 from src.constants import CARDS
-from get_options.yml_custom_parser import parse_dict, parse_list
+from src.get_options.yml_custom_parser import parse_dict, parse_list
 
 
 r"""

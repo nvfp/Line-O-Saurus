@@ -2,7 +2,7 @@ import unittest
 
 import os
 
-from get_options.get_options import get_options
+from src.get_options.get_options import get_options
 
 
 class TestGetOptions(unittest.TestCase):
