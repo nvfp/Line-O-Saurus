@@ -6,7 +6,7 @@ from mykit.kit.text import byteFmt
 from mykit.kit.pLog import pL
 
 from src.constants import NON_TEXT_TYPE, NON_TEXT_FILENAME
-from src.get_options import get_options
+from get_options.get_options import get_options
 
 
 def get_readme(REPO_ROOT_DIR):
