@@ -71,6 +71,9 @@ class TestGetOptions(unittest.TestCase):
         with open(os.path.join(os.environ['GITHUB_WORKSPACE'], 'README.md'), 'r') as f: text = f.read()
         self.assertEqual(OPT.HEADER, text)
 
+        OPT = get_options(HEADER='tests/test_header.md')
+        self.assertEqual(OPT.HEADER, '### This header text should be inside tests/test_header.md\n\n')
+
         ## Fails
 
         with self.assertRaises(AssertionError) as ctx: get_options(HEADER='non-existing-file-124124141513414')

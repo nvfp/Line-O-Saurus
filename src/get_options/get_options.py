@@ -79,7 +79,9 @@ def get_options(
     if HEADER == '':
         OPTIONS.HEADER = ''
     else:
-        header = os.path.join(REPO_ROOT_DIR, HEADER)
+        ## Use 'normpath' for Windows (converts '/' to '\'),
+        ## and for Linux (case-sensitive paths), prefer 'normpath' over 'normcase'.
+        header = os.path.join(REPO_ROOT_DIR, os.path.normpath(HEADER))
         if not os.path.isfile(header):
             raise AssertionError('Invalid header value.')
         with open(header, 'r') as f:
@@ -89,7 +91,9 @@ def get_options(
     if FOOTER == '':
         OPTIONS.FOOTER = ''
     else:
-        footer = os.path.join(REPO_ROOT_DIR, FOOTER)
+        ## Use 'normpath' for Windows (converts '/' to '\'),
+        ## and for Linux (case-sensitive paths), prefer 'normpath' over 'normcase'.
+        footer = os.path.join(REPO_ROOT_DIR, os.path.normpath(FOOTER))
         if not os.path.isfile(footer):
             raise AssertionError('Invalid footer value.')
         with open(footer, 'r') as f:
