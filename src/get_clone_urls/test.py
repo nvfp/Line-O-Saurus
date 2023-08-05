@@ -3,7 +3,7 @@ import unittest
 from src.get_clone_urls import get_clone_urls
 
 
-class TestGetCloneURLs(unittest.TestCase):
+class Test__get_clone_urls(unittest.TestCase):
 
     def test_normal(self):
         raw = '[{"url":"https://github.com/foo/bar"},{"url":"https://github.com/foo/baz"}]'

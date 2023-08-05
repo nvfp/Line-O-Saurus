@@ -1,9 +1,9 @@
 import unittest
 
-from src.card_maker import card_maker
+from src.engine.card_maker import card_maker
 
 
-class TestCardMaker(unittest.TestCase):
+class Test__card_maker(unittest.TestCase):
 
     def test_no_title(self):
 
