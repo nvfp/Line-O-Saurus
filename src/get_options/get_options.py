@@ -124,13 +124,14 @@ def get_options(
 
     ## card-titles
     if CARD_TITLES == '':
-        ## This default should match the one in the README
-        OPTIONS.CARD_TITLES = {
+        OPTIONS.CARD_TITLES = {c: '' for c in CARDS}
+        OPTIONS.CARD_TITLES.update({
+            ## This default should match the one in the README
             'line': "Lines of code",
             'type': "Languages",
             'star': "Stargazers",
             'stat': "_OWNER_'s statistics",
-        }
+        })
     else:
         try:
             card_titles = parse_dict(CARD_TITLES)

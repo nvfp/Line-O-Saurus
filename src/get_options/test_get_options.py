@@ -2,6 +2,7 @@ import unittest
 
 import os
 
+from src.constants import CARDS
 from src.get_options.get_options import get_options
 
 
@@ -128,35 +129,40 @@ class TestGetOptions(unittest.TestCase):
 
         ## Passes
 
+        def _fn(x):
+            d = {c: '' for c in CARDS}
+            d.update(x)
+            return d
+
         OPT = get_options(CARD_TITLES='{"line": "foo"}')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo'}))
 
         OPT = get_options(CARD_TITLES='{"line": "foo", "stat": "bar"}')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo', 'stat': 'bar'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo', 'stat': 'bar'}))
 
         OPT = get_options(CARD_TITLES='{"size": "foo", "type": "bar"}')
-        self.assertEqual(OPT.CARD_TITLES, {'size': 'foo', 'type': 'bar'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'size': 'foo', 'type': 'bar'}))
         
         OPT = get_options(CARD_TITLES='{"line": "foo", "type": "bar", "stat": "# baz", "size": "**boo**"}')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo', 'type': 'bar', 'stat': '# baz', 'size': '**boo**'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo', 'type': 'bar', 'stat': '# baz', 'size': '**boo**'}))
         
         OPT = get_options(CARD_TITLES='{"size": "foo", "char": "bar", "star": "2", "cmit": "3"}')
-        self.assertEqual(OPT.CARD_TITLES, {'size': 'foo', 'char': 'bar', 'star': '2', 'cmit': '3'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'size': 'foo', 'char': 'bar', 'star': '2', 'cmit': '3'}))
         
         OPT = get_options(CARD_TITLES='- line: foo\n')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo'}))
 
         OPT = get_options(CARD_TITLES='- line: foo\n- stat: bar\n')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo', 'stat': 'bar'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo', 'stat': 'bar'}))
 
         OPT = get_options(CARD_TITLES='- line: foo\n-  stat:  bar\n')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo', 'stat': 'bar'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo', 'stat': 'bar'}))
 
         OPT = get_options(CARD_TITLES='-line:foo\n')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo'}))
 
         OPT = get_options(CARD_TITLES='line:foo\n')
-        self.assertEqual(OPT.CARD_TITLES, {'line': 'foo'})
+        self.assertEqual(OPT.CARD_TITLES, _fn({'line': 'foo'}))
 
         ## Fails
 
