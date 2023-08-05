@@ -18,6 +18,7 @@ bar: |-
 
 
 Extra note: for custom-title, "|-" is recommended because it doesn't include the ending '\n'.
+Extra note: `foo: '[.txt, .md, .json]'` is invalid.
 """
 
 
