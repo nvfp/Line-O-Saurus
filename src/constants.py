@@ -3,7 +3,19 @@
 PB_CHAR = '▆'  # Default progress bars character
 PB_LEN = 12  # Progress bars length
 
-CARDS = ['line', 'type', 'size', 'stat', 'char', 'star', 'cmit']
+"""
+Cards
+-----
+line: lines of code per repository
+type: lines of code per extension (across entire owner's repositories)
+size: file sizes per repository
+stat: summary
+char: number of characarter per extension
+star: number of stargazers per repository
+cmit: number of commits per repository
+file: number of files per repository
+"""
+CARDS = ['line', 'type', 'size', 'stat', 'char', 'star', 'cmit', 'file']
 
 NON_TEXT_TYPE = [
 
