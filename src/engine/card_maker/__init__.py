@@ -29,6 +29,6 @@ def card_maker(title, entries, align, lang):
     return (
         TITLE +
         f'```{lang}\n' +
-        code_block +
+        code_block + '\n' +
         '```'
     )
