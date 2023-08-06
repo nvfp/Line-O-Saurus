@@ -13,28 +13,35 @@ class Test__card_maker(unittest.TestCase):
             ['a', '100%', '3 lines', 'XXXX'],
         ]
         align = [-1, 1, 1, -1]
-        result = card_maker(None, entries, align)
+        lang = 'yml'
+        result = card_maker(None, entries, align, lang)
         expected = (
+            f'```{lang}\n'
             'foo         43%  323,123 lines  XXXXXXXXXXXXXXX\n'
             'foooooooo    3%      323 lines  XXXXXXX        \n'
-            'a          100%        3 lines  XXXX           '
+            'a          100%        3 lines  XXXX           \n'
+            '```'
         )
         self.assertEqual(result, expected)
 
     def test_with_title(self):
 
+        title = '# Foo bar'
         entries = [
             ['foo', '43%', '323,123 lines', 'XXXXXXXXXXXXXXX'],
             ['foooooooo', '3%', '323 lines', 'XXXXXXX'],
             ['a', '100%', '3 lines', 'XXXX'],
         ]
         align = [-1, 1, 1, -1]
-        result = card_maker('# Foo bar', entries, align)
+        lang = 'python'
+        result = card_maker(title, entries, align, lang)
         expected = (
-            '# Foo bar\n\n'
+            f'{title}\n\n'
+            f'```{lang}\n'
             'foo         43%  323,123 lines  XXXXXXXXXXXXXXX\n'
             'foooooooo    3%      323 lines  XXXXXXX        \n'
-            'a          100%        3 lines  XXXX           '
+            'a          100%        3 lines  XXXX           \n'
+            '```'
         )
         self.assertEqual(result, expected)
 
