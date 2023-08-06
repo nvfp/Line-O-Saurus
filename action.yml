@@ -71,8 +71,10 @@ runs:
         CARD_ORDER: ${{ inputs.card-order }}
         PREFER_EXTENSION: ${{ inputs.prefer-extension }}
         SHOW_CREDIT: ${{ inputs.show-credit }}
+    - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
+      id: time
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
         name: ${{ inputs.git-name }}
         email: ${{ inputs.git-email }}
-        msg: "Lineosaurus on $(date +'%Y %b %e, %l:%M %p')"
+        msg: "Lineosaurus on ${{ steps.time.outputs.time }}"
