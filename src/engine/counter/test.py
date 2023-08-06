@@ -8,7 +8,7 @@ from src.engine.counter import counter
 TEST_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 
 
-class Test_counter(unittest.TestCase):
+class Test__counter(unittest.TestCase):
 
     def test_count_all(self):
 
