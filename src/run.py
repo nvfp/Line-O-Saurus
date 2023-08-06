@@ -21,6 +21,10 @@ def run():
     WORKSPACE_DIR = os.path.abspath(os.path.join(REPO_ROOT_DIR, '..', 'lineosaurus-workspace'))
 
     ## Debugging purposes
+    pL.debug(f'REPO_ROOT_DIR: {repr(REPO_ROOT_DIR)}.')
+    pL.debug(f'OWNER: {repr(os.environ["GITHUB_ACTOR"])}.')
+
+    ## Debugging purposes
     pL.debug(f'ONLY_TYPE . . . : {repr(os.environ["ONLY_TYPE"])}.')
     pL.debug(f'IGNORE_TYPE . . : {repr(os.environ["IGNORE_TYPE"])}.')
     pL.debug(f'HEADER  . . . . : {repr(os.environ["HEADER"])}.')
