@@ -1,6 +1,7 @@
 from typing import List
 
 from src.constants import NON_TEXT_TYPE, NON_TEXT_FILENAME
+from src.engine.get_line_card import get_line_card
 from src.engine.get_star_card import get_star_card
 
 
@@ -10,7 +11,13 @@ def assembler(header: str, cards: List[str], credit: str, footer: str):
 
 def engine(WORKSPACE_DIR, OPTIONS):
 
-    return get_star_card(OPTIONS.NUM_SHOWN, OPTIONS.SHOW_APPROX, 'foo')
+    t = (
+        get_star_card(OPTIONS.NUM_SHOWN, OPTIONS.SHOW_APPROX, 'foo')
+        + '\n\n' +
+        get_line_card()
+    )
+
+    return t
 
     total_pub_repos, total_line, total_size = 0, 0, 0
     pool = {}
@@ -63,7 +70,7 @@ abcd-12312  ▆                                 132,412 lines
 ### Top languages
 
 ```css
-.py      ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆  90%  13k lines
+.py      ▆▆▆▆▆▆▆▆▆▆▆▆  90%  13k lines
 .ts      ▆▆▆▆▆▆                        43%  43k lines
 .tx      ▆                                 43%  22k lines
 .foobar  ▆                                 43%   1k lines
