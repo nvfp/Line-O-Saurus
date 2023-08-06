@@ -48,10 +48,11 @@ def writer(NUM_SHOWN, SHOW_APPROX, card_title, total, pack):
     pack_sorted = sort_dict_by_val(pack, reverse=True)
     pack_cut = get_first_n_dict_items(pack_sorted, NUM_SHOWN)
 
-    entries = get_entries()
-
+    entries = get_entries(SHOW_APPROX, total, pack_cut)
     align = [-1, 1, 1, -1]
     card = card_maker(card_title, entries, align)
+    
+    return card
 
 
 def get_star_card(NUM_SHOWN, SHOW_APPROX, card_title):
@@ -62,5 +63,4 @@ def get_star_card(NUM_SHOWN, SHOW_APPROX, card_title):
     pack = pack_stargazers(OWNER)
 
     card = writer(NUM_SHOWN, SHOW_APPROX, card_title, total, pack)
-
     return card
