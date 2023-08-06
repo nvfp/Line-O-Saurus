@@ -60,19 +60,19 @@ jobs:
 
 ### Options
 
-option             | description
----                | ---        
-`only-type`        | foo
-`ignore-type`      | ignored if only-type is specified
-`header`           | header file (relative to repo root)
-`footer`           | footer file (relative to repo root)
-`custom-title`     | you can use `_OWNER_`, 
-`num-shown`        | number of 
-`show-approx`      | `13K` instead of `13,241`
-`card-titles`      | 
-`card-order`       | 
-`prefer-extension` | `.py` over `Python`
-`show-credit`      | show the credit at the end of the file
+option             | description | default
+---                | ---         | ---
+`only-type`        | foo | `null`
+`ignore-type`      | ignored if only-type is specified | 
+`header`           | header file (relative to repo root) | 
+`footer`           | footer file (relative to repo root) | 
+`custom-title`     | you can use `_OWNER_`,  | 
+`num-shown`        | number of  | 
+`show-approx`      | `13K` instead of `13,241` | 
+`card-titles`      |  | 
+`card-order`       |  | 
+`prefer-extension` | `.py` over `Python` | 
+`show-credit`      | show the credit at the end of the file | 
 
 ### Variables
 

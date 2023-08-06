@@ -14,6 +14,9 @@ from src.engine.card_maker import card_maker
 # foo-bar-baz       21 stargazers   3%  ⭐️
 
 
+LANG = 'txt'
+
+
 def get_entries(SHOW_APPROX, total, pack_cut):
     
     entries = []
@@ -50,8 +53,8 @@ def writer(NUM_SHOWN, SHOW_APPROX, card_title, total, pack):
 
     entries = get_entries(SHOW_APPROX, total, pack_cut)
     align = [-1, 1, 1, -1]
-    card = card_maker(card_title, entries, align, 'txt')
-    
+    card = card_maker(card_title, entries, align, LANG)
+
     return card
 
 
