@@ -50,7 +50,7 @@ def writer(NUM_SHOWN, SHOW_APPROX, card_title, total, pack):
 
     entries = get_entries(SHOW_APPROX, total, pack_cut)
     align = [-1, 1, 1, -1]
-    card = card_maker(card_title, entries, align)
+    card = card_maker(card_title, entries, align, 'txt')
     
     return card
 
