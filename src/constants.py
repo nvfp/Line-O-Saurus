@@ -1,7 +1,7 @@
 
 
 PB_CHAR = '▆'  # Default progress bars character
-PB_LEN = 20  # Progress bars length
+PB_LEN = 12  # Progress bars length
 
 CARDS = ['line', 'type', 'size', 'stat', 'char', 'star', 'cmit']
 
