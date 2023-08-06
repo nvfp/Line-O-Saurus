@@ -95,6 +95,7 @@ with:
   ignore-type: |
     - .py
     - .md
+  header: assets/header.md
   custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
   show-approx: true
   card-titles: '{"line": "foo", "star": "bar"}'

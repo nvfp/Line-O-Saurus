@@ -1,6 +1,7 @@
 from typing import List
 
 from src.constants import NON_TEXT_TYPE, NON_TEXT_FILENAME
+from src.engine.get_star_card import get_star_card
 
 
 def assembler(header: str, cards: List[str], credit: str, footer: str):
@@ -8,6 +9,8 @@ def assembler(header: str, cards: List[str], credit: str, footer: str):
 
 
 def engine(WORKSPACE_DIR, OPTIONS):
+
+    return get_star_card(OPTIONS.NUM_SHOWN, OPTIONS.SHOW_APPROX, 'foo')
 
     total_pub_repos, total_line, total_size = 0, 0, 0
     pool = {}
