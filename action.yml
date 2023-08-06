@@ -72,6 +72,7 @@ runs:
         PREFER_EXTENSION: ${{ inputs.prefer-extension }}
         SHOW_CREDIT: ${{ inputs.show-credit }}
     - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
+      shell: bash
       id: time
     - uses: scapeville/action-git-add-all-then-commit-then-push@v1
       with:
