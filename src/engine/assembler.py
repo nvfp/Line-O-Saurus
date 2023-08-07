@@ -1,3 +1,5 @@
+from mykit.kit.text import num_round, num_approx
+
 from src.engine.get_line_card import get_line_card
 from src.engine.get_type_card import get_type_card
 from src.engine.get_size_card import get_size_card
@@ -7,6 +9,7 @@ from src.engine.get_star_card import get_star_card
 from src.engine.get_cmit_card import get_cmit_card
 from src.engine.get_file_card import get_file_card
 from src.engine.variables_manager import Vars, replace_vars
+from src.engine.counter import counter
 
 
 def card_factory(WORKSPACE_DIR, OPTIONS):
@@ -79,9 +82,21 @@ def assembler(header, custom_title, cards, footer, show_credit):
 
 def engine(WORKSPACE_DIR, OPTIONS):
 
+    line_per_ext, size_per_ext, char_per_ext, file_per_ext = counter(None, None, WORKSPACE_DIR)
+    TOTAL_LINE = sum(line_per_ext.values())
+    Vars._LINES_ = TOTAL_LINE
+    Vars._LINES_ROUND_ = num_round(TOTAL_LINE)
+    Vars._LINES_APPROX_ = num_approx(TOTAL_LINE)
+
+    line_per_ext, size_per_ext, char_per_ext, file_per_ext = counter(OPTIONS.ONLY_TYPE, OPTIONS.IGNORE_TYPE, WORKSPACE_DIR)
+    TOTAL_LINE = sum(line_per_ext.values())
+    Vars._LINE_ = TOTAL_LINE
+    Vars._LINE_ROUND_ = num_round(TOTAL_LINE)
+    Vars._LINE_APPROX_ = num_approx(TOTAL_LINE)
+
     header = replace_vars(OPTIONS.HEADER)
     custom_title = replace_vars(OPTIONS.CUSTOM_TITLE)
-    card_titles = {k: replace_vars(v) for k, v in OPTIONS.CARD_TITLES.items()}
+    OPTIONS.CARD_TITLES = {k: replace_vars(v) for k, v in OPTIONS.CARD_TITLES.items()}
     footer = replace_vars(OPTIONS.FOOTER)
 
     cards = card_factory(WORKSPACE_DIR, OPTIONS)

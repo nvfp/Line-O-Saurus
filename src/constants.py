@@ -57,6 +57,8 @@ TYPE_TO_NAME = {
     '.txt': 'Plain Text',
     '.c': 'C',
     '.h': 'C Header',
+    '.go': 'Go',
+    '.ts': 'TypeScript',
     '.pyc': 'Python Compiled File',
     '.jar': 'Java Archive',
     '.exe': 'Executable',
@@ -67,25 +69,4 @@ TYPE_TO_NAME = {
     '.png': 'PNG Image',
     '.mp3': 'MP3 Audio',
     '.mp4': 'MP4 Video',
-}
-
-LANGUAGES = {
-    '.py': 'Python',
-    '.js': 'JavaScript',
-    '.java': 'Java',
-    '.cpp': 'C++',
-    '.html': 'HTML',  # It's fine
-    '.css': 'CSS',
-    '.rb': 'Ruby',
-    '.php': 'PHP',
-    '.swift': 'Swift',
-    '.kt': 'Kotlin',
-    '.pl': 'Perl',
-    '.sh': 'Shell',
-    '.xml': 'XML',
-    '.json': 'JSON',
-    '.sql': 'SQL',
-    '.c': 'C',
-    '.go': 'Go',
-    '.ts': 'TypeScript',
 }

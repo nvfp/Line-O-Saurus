@@ -1,10 +1,11 @@
-import datetime
 import os
+
+from mykit.kit.time import TimeFmt
 
 
 class Vars:
 
-    _DATE_ = datetime.datetime.now().strftime('%b %-d, %Y')
+    _DATE_ = TimeFmt.date()
     _OWNER_ = os.environ['GITHUB_ACTOR']
 
     ## Total lines of code across the owner's repositories, regardless of only-type and ignore-type.
@@ -13,6 +14,8 @@ class Vars:
     _LINES_APPROX_ = ''
 
     _LINE_ = ''
+    _LINE_ROUND_ = ''
+    _LINE_APPROX_ = ''
 
 
 def replace_vars(text):
