@@ -14,7 +14,7 @@ def engine(WORKSPACE_DIR, OPTIONS):
     t = (
         get_star_card(OPTIONS.NUM_SHOWN, OPTIONS.SHOW_APPROX, 'foo')
         + '\n\n' +
-        get_line_card()
+        get_line_card(WORKSPACE_DIR, OPTIONS.ONLY_TYPE, OPTIONS.IGNORE_TYPE, OPTIONS.NUM_SHOWN, OPTIONS.SHOW_APPROX, 'bar')
     )
 
     return t
