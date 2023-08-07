@@ -103,6 +103,37 @@ with:
   card-order: '["line", "star"]'
 ```
 
+```yml
+with:
+  git-name: your name
+  git-email: your@email
+  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
+  ignore-type: |
+    - .py
+    - .md
+  header: assets/header.md
+  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
+  show-approx: true
+  card-titles: |
+    - type: #### Top languages
+    - stat: #### _OWNER_'s statistics
+    - line: #### Lines of code
+    - size: #### Repo sizes
+    - char: #### Number of characters
+    - star: #### Stargazers
+    - cmit: #### Total commits
+    - file: #### Total files
+  card-order: |
+    type
+    stat
+    line
+    size
+    char
+    star
+    cmit
+    file
+```
+
 
 ## License
 
