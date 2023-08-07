@@ -4,7 +4,7 @@ import os
 
 class Vars:
 
-    _DATE_ = datetime.datetime.now().strftime('%b %#d, %Y')
+    _DATE_ = datetime.datetime.now().strftime('%b %-d, %Y')
     _OWNER_ = os.environ['GITHUB_ACTOR']
 
     ## Total lines of code across the owner's repositories, regardless of only-type and ignore-type.
