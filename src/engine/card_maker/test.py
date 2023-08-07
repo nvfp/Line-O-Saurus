@@ -14,7 +14,7 @@ class Test__card_maker(unittest.TestCase):
         ]
         align = [-1, 1, 1, -1]
         lang = 'yml'
-        result = card_maker(None, entries, align, lang)
+        result = card_maker('', entries, align, lang)
         expected = (
             f'```{lang}\n'
             'foo         43%  323,123 lines  XXXXXXXXXXXXXXX\n'
