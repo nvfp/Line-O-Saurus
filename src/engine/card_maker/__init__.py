@@ -6,7 +6,7 @@
 def card_maker(title, entries, align, lang):
     """align: list[Literal[-1, 1]]: -1 (align column to the left); 1 (align column to the right)"""
 
-    if title is '':
+    if title == '':
         TITLE = ''
     else:
         TITLE = title + '\n\n'
