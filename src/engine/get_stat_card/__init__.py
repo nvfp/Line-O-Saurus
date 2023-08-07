@@ -63,14 +63,14 @@ def get_stat_card(WORKSPACE_DIR, ONLY_TYPE, IGNORE_TYPE, card_title):
 
     ## Make the card
     entries = [
-        ['number of repo', f'{len(os.listdir(WORKSPACE_DIR)):,}']
-        ['top language', get_top3_lang(char_per_ext)]
-        ['lines of code', f'{sum(line_per_ext.values()):,}']
-        ['total size', in_byte(sum(size_per_ext.values()))]
-        ['number of chars', f'{sum(char_per_ext.values()):,}']
-        ['number of stars', f'{total_stargazers(OWNER):,}']
-        ['number of commits', get_total_commits(WORKSPACE_DIR)]
-        ['number of files', f'{sum(file_per_ext.values()):,}']
+        ['number of repo', f'{len(os.listdir(WORKSPACE_DIR)):,}'],
+        ['top language', get_top3_lang(char_per_ext)],
+        ['lines of code', f'{sum(line_per_ext.values()):,}'],
+        ['total size', in_byte(sum(size_per_ext.values()))],
+        ['number of chars', f'{sum(char_per_ext.values()):,}'],
+        ['number of stars', f'{total_stargazers(OWNER):,}'],
+        ['number of commits', get_total_commits(WORKSPACE_DIR)],
+        ['number of files', f'{sum(file_per_ext.values()):,}'],
     ]
     align = [-1, -1]
     card = card_maker(card_title, entries, align, LANG)
