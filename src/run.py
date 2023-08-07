@@ -4,7 +4,7 @@ import re
 from mykit.kit.pLog import pL
 
 from src.get_options.get_options import get_options
-from src.engine.engine import engine
+from src.engine import engine
 
 
 def get_readme(REPO_ROOT_DIR):
@@ -69,3 +69,5 @@ def run():
 
     with open(README, 'w') as f:
         f.write(TEXT)
+
+    pL.info('README updated.')

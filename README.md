@@ -36,17 +36,17 @@ jobs:
           header: null
           footer: null
           custom-title: |-
-            ~ Updated on _DATE_ ~
+            ### ~ Updated on _DATE_ ~
 
-            _LINE_ lines of code stretch through _OWNER_'s repositories.
+            ### _LINE_ lines of code stretch through _OWNER_'s repositories.
           num-shown: 3
           show-approx: true
-          card-titles: 
-            - line: Lines of code
-            - type: Languages
-            - star: Stargazers
-            - stat: _OWNER_'s statistics
-          card-order:
+          card-titles: |
+            - line: #### Lines of code
+            - type: #### Languages
+            - star: #### Stargazers
+            - stat: #### _OWNER_'s statistics
+          card-order: |
             - line
             - type
             - star

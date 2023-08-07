@@ -6,8 +6,13 @@ class Vars:
 
     _DATE_ = datetime.datetime.now().strftime('%b %#d, %Y')
     _OWNER_ = os.environ['GITHUB_ACTOR']
-    _LINES_ = None
-    _LINE_ = None
+
+    ## Total lines of code across the owner's repositories, regardless of only-type and ignore-type.
+    _LINES_ = ''
+    _LINES_ROUND_ = ''
+    _LINES_APPROX_ = ''
+
+    _LINE_ = ''
 
 
 def replace_vars(text):
