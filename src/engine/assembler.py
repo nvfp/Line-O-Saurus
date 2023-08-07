@@ -1,5 +1,6 @@
 from mykit.kit.text import num_round, num_approx
 
+from src.constants import __version__
 from src.engine.get_line_card import get_line_card
 from src.engine.get_type_card import get_type_card
 from src.engine.get_size_card import get_size_card
@@ -75,7 +76,7 @@ def assembler(header, custom_title, cards, footer, show_credit):
         text += '\n\n' + footer
 
     if show_credit:
-        text += '\n\nCounted by [Lineosaurus](https://github.com/nvfp/Line-O-Saurus)'
+        text += f'\n\nCounted by [Lineosaurus](https://github.com/nvfp/Line-O-Saurus) ({__version__})'
 
     return text
 

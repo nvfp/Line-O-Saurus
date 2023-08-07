@@ -68,7 +68,7 @@ def get_stat_card(WORKSPACE_DIR, ONLY_TYPE, IGNORE_TYPE, card_title):
         ['lines of code', f'{sum(line_per_ext.values()):,}'],
         ['total size', in_byte(sum(size_per_ext.values()))],
         ['number of chars', f'{sum(char_per_ext.values()):,}'],
-        ['number of stars', f'{total_stargazers(OWNER):,}'],
+        ['number of stars', f'{total_stargazers(OWNER):,} 🌟'],
         ['number of commits', get_total_commits(WORKSPACE_DIR)],
         ['number of files', f'{sum(file_per_ext.values()):,}'],
     ]

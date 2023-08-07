@@ -1,5 +1,8 @@
 
 
+__version__ = '1.0.0b11'
+
+
 PB_CHAR = '▆'  # Default progress bars character
 PB_LEN = 21  # Progress bars length
 

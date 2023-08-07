@@ -13,6 +13,7 @@ def get_readme(REPO_ROOT_DIR):
     for i, j in enumerate(os.listdir(REPO_ROOT_DIR), 1):
         eL.debug(f'Searching for README attempt#{str(i).zfill(2)}: {repr(j)}')
         if re.match(r'^readme\.md$', j, re.IGNORECASE):
+            eL.endgroup()
             return os.path.join(REPO_ROOT_DIR, j)
     raise FileNotFoundError('README.md not found.')
 
