@@ -64,7 +64,7 @@ def assembler(header, custom_title, cards, footer, show_credit):
         text = header + '\n\n'
 
     ## Apparently, at the moment, the custom title cannot be an empty string.
-    text = custom_title + '\n\n'
+    text += custom_title + '\n\n'
 
     text += cards
 
