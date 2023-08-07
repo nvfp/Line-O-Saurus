@@ -84,6 +84,6 @@ def engine(WORKSPACE_DIR, OPTIONS):
     card_titles = {k: replace_vars(v) for k, v in OPTIONS.CARD_TITLES.items()}
     footer = replace_vars(OPTIONS.FOOTER)
 
-    cards = card_factory()
+    cards = card_factory(WORKSPACE_DIR, OPTIONS)
 
     return assembler(header, custom_title, cards, footer, OPTIONS.SHOW_CREDIT)
