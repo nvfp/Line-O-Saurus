@@ -4,7 +4,8 @@ import re
 from mykit.kit.pLog import pL
 
 from src.get_options.get_options import get_options
-from src.engine import engine
+# from src.engine import engine
+from src.engine.assembler import engine
 
 
 def get_readme(REPO_ROOT_DIR):
