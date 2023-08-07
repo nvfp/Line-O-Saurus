@@ -127,8 +127,8 @@ def get_options(
         raise AssertionError('Invalid show-approx value.')
 
     ## card-titles
+    OPTIONS.CARD_TITLES = {c: '' for c in CARDS}
     if CARD_TITLES == '':
-        OPTIONS.CARD_TITLES = {c: '' for c in CARDS}
         OPTIONS.CARD_TITLES.update({
             ## This default should match the one in the README
             'line': "Lines of code",
@@ -146,7 +146,7 @@ def get_options(
         for k, v in card_titles.items():
             if (k not in CARDS) or (type(v) is not str):
                 raise AssertionError('Invalid card-titles value.')
-        OPTIONS.CARD_TITLES = card_titles
+        OPTIONS.CARD_TITLES.update(card_titles)
 
     ## card-order
     if CARD_ORDER == '':

@@ -47,7 +47,7 @@ def counter(ONLY_TYPE, IGNORE_TYPE, dir_path):
                 add_dict_val(char_per_ext, ext, CHAR, CHAR)
                 add_dict_val(file_per_ext, ext, 1   , 1)
         else:
-            _line_per_ext, _size_per_ext, _char_per_ext, _file_per_ext = counter(path)
+            _line_per_ext, _size_per_ext, _char_per_ext, _file_per_ext = counter(ONLY_TYPE, IGNORE_TYPE, path)
             merging_dicts(line_per_ext, _line_per_ext)
             merging_dicts(size_per_ext, _size_per_ext)
             merging_dicts(char_per_ext, _char_per_ext)
