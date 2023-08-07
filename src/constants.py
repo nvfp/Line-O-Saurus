@@ -68,3 +68,24 @@ TYPE_TO_NAME = {
     '.mp3': 'MP3 Audio',
     '.mp4': 'MP4 Video',
 }
+
+LANGUAGES = {
+    '.py': 'Python',
+    '.js': 'JavaScript',
+    '.java': 'Java',
+    '.cpp': 'C++',
+    '.html': 'HTML',  # It's fine
+    '.css': 'CSS',
+    '.rb': 'Ruby',
+    '.php': 'PHP',
+    '.swift': 'Swift',
+    '.kt': 'Kotlin',
+    '.pl': 'Perl',
+    '.sh': 'Shell',
+    '.xml': 'XML',
+    '.json': 'JSON',
+    '.sql': 'SQL',
+    '.c': 'C',
+    '.go': 'Go',
+    '.ts': 'TypeScript',
+}

@@ -5,7 +5,7 @@ from mykit.kit.utils import sort_dict_by_val, get_first_n_dict_items
 from pyggc.ghcli.simple import total_stargazers
 from pyggc.git.simple import get_num_commits
 
-from src.constants import TYPE_TO_NAME
+from src.constants import TYPE_TO_NAME, LANGUAGES
 from src.engine.card_maker import card_maker
 from src.engine.counter import counter
 
@@ -28,14 +28,19 @@ LANG = 'txt'
 def get_top3_lang(char_per_ext):
     """Using the number of characters as an indicator of the top used language"""
     
-    ## Sort and cut
+    ## Sort
     char_per_ext = sort_dict_by_val(char_per_ext, reverse=True)
+
+    ## Exclude the non-languages
+    char_per_ext = {k:v for k,v in char_per_ext.items() if k in LANGUAGES}
+
+    ## Cut
     char_per_ext = get_first_n_dict_items(char_per_ext, 3)
 
     exts = list(char_per_ext.keys())
-    lang1 = TYPE_TO_NAME[exts[0]]
-    lang2 = TYPE_TO_NAME[exts[1]]
-    lang3 = TYPE_TO_NAME[exts[2]]
+    lang1 = LANGUAGES[exts[0]]
+    lang2 = LANGUAGES[exts[1]]
+    lang3 = LANGUAGES[exts[2]]
     return f'{lang1}, {lang2}, and {lang3}'
 
 
