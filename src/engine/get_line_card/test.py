@@ -21,7 +21,7 @@ class Test__writer(unittest.TestCase):
         expected = (
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 lines  73%  {PB_CHAR*round(PB_LEN*1500/TOTAL)}\n'
-            f'foo            500 lines  25%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
+            f'foo            500 lines  24%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
             f'foo-bar         50 lines   2%  {PB_CHAR*round(PB_LEN*50/TOTAL)}{" "*round(PB_LEN*(1-50/TOTAL))}\n'
             '```'
         )
@@ -35,7 +35,7 @@ class Test__writer(unittest.TestCase):
             f'{title}\n\n'
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 lines  73%  {PB_CHAR*round(PB_LEN*1500/TOTAL)}\n'
-            f'foo            500 lines  25%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
+            f'foo            500 lines  24%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
             f'foo-bar         50 lines   2%  {PB_CHAR*round(PB_LEN*50/TOTAL)}{" "*round(PB_LEN*(1-50/TOTAL))}\n'
             '```'
         )

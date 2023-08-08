@@ -3,6 +3,8 @@ import re
 
 from mykit.kit.time import TimeFmt
 
+from src.constants import __version__
+
 
 class Vars:
 
@@ -17,6 +19,8 @@ class Vars:
     _LINE_ = ''
     _LINE_ROUND_ = ''
     _LINE_APPROX_ = ''
+
+    _VER_ = __version__
 
 
 def replace_vars(text):

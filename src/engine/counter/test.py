@@ -21,16 +21,18 @@ class Test__counter(unittest.TestCase):
         }
         self.assertEqual(line_per_ext, expected)
         
+        ## On Linux
         expected = {
-            '.txt': 31 + 6,
-            '.md': 14,
+            '.txt': 28 + 5,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(size_per_ext, expected)
-        
+
+        ## On Linux
         expected = {
-            '.txt': 31 + 6,
-            '.md': 14,
+            '.txt': 28 + 5,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(char_per_ext, expected)
@@ -53,12 +55,12 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
         }
         self.assertEqual(char_per_ext, expected)
         
@@ -79,13 +81,13 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
             '.js': 6,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
             '.js': 6,
         }
         self.assertEqual(char_per_ext, expected)
@@ -108,13 +110,13 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
             '.js': 6,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
             '.js': 6,
         }
         self.assertEqual(char_per_ext, expected)
@@ -137,13 +139,13 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.md': 14,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.md': 14,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(char_per_ext, expected)
@@ -165,12 +167,12 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.md': 14,
+            '.md': 12,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.md': 14,
+            '.md': 12,
         }
         self.assertEqual(char_per_ext, expected)
         
@@ -192,15 +194,15 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
-            '.md': 14,
+            '.txt': 28 + 5,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(size_per_ext, expected)
-        
+
         expected = {
-            '.txt': 31 + 6,
-            '.md': 14,
+            '.txt': 28 + 5,
+            '.md': 12,
             '.js': 6,
         }
         self.assertEqual(char_per_ext, expected)
@@ -224,12 +226,12 @@ class Test__counter(unittest.TestCase):
         self.assertEqual(line_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
         }
         self.assertEqual(size_per_ext, expected)
         
         expected = {
-            '.txt': 31 + 6,
+            '.txt': 28 + 5,
         }
         self.assertEqual(char_per_ext, expected)
         

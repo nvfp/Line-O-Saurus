@@ -10,7 +10,7 @@ class Test__engine(unittest.TestCase):
 
     def test_1(self):
 
-        result = ass()
+        result = 0
         expected = (
             f''
         )

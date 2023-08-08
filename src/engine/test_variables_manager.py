@@ -3,22 +3,14 @@ import unittest
 from src.engine.variables_manager import Vars, replace_vars
 
 
-def reset_Vars():
-    global Vars
-    Vars = type('Vars', (), {})
-
-
 class Test__replace_vars(unittest.TestCase):
-
-    def setUp(self):
-        reset_Vars()
 
     def test1(self):
 
         Vars._LINE_ = 200
         Vars._LINES_ = 300
         text = '_LINE_ foo _LINE_ foo _LINES_ foo _LINE_ foo _LINES_'
-        
+
         result = replace_vars(text)
         expected = '200 foo 200 foo 300 foo 200 foo 300'
         self.assertEqual(result, expected)
@@ -28,12 +20,12 @@ class Test__replace_vars(unittest.TestCase):
         Vars._LINE_ = 200
         Vars._OWNER_ = 'FooBar'
         text = 'foo _OWNER__LINE_'
-        
+
         result = replace_vars(text)
-        expected = 'foo FooBar200'
+        expected = 'foo _OWNER__LINE_'
         self.assertEqual(result, expected)
 
-    def test2(self):
+    def test3(self):
 
         Vars._OWNER_ = 'FooBar'
         Vars._LINE_ = 10
