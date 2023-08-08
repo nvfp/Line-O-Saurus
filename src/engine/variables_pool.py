@@ -12,13 +12,27 @@ class Vars:
 
     ## Total lines of code across all repositories, regardless only-type and ignore-type.
     _LINES_ = ''
+    _LINESFMT_ = ''
     _LINESROUND_ = ''
     _LINESAPPROX_ = ''
 
+    ## Total characters across all repositories, regardless only-type and ignore-type.
+    _CHARS_ = ''
+    _CHARSFMT_ = ''
+    _CHARSROUND_ = ''
+    _CHARSAPPROX_ = ''
+
     ## Total lines of code across all repositories, following only-type and ignore-type.
     _LINE_ = ''
+    _LINEFMT_ = ''
     _LINEROUND_ = ''
     _LINEAPPROX_ = ''
+
+    ## Total commits across all repositories
+    _CMIT_ = ''
+    _CMITFMT_ = ''
+    _CMITROUND_ = ''
+    _CMITAPPROX_ = ''
 
     _VER_ = __version__
 

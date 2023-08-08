@@ -1,4 +1,4 @@
-# Lineosaurus🦕
+# Lineosaurus🦕 (under development)
 
 [![Run tests](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml)
 [![License](https://img.shields.io/github/license/nvfp/Line-O-Saurus)](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE)
@@ -91,9 +91,11 @@ variable        | description | example
 `_OWNER_`       | your GitHub username | `Lineosaurus`
 `_DATE_`        | today's date | `Aug 1, 2023`
 `_LINES_`       | total lines of code across all repositories (regardless only-type/ignore-type) | `123456`
-`_LINESAPPROX_` | formatted `_LINES_` | `123K`
+`_LINESFMT_`    | formatted `_LINES_` | `123,456`
+`_LINESAPPROX_` | formatted `_LINES_` | `123.5K`
 `_LINESROUND_`  | formatted `_LINES_` | `120,000`
 `_LINE_`        | total lines of code across all repositories (following only-type/ignore-type) | `3141`
+`_LINEFMT_`  | formatted `_LINE_` | `3,141`
 `_LINEAPPROX_`  | formatted `_LINE_` | `3.1K`
 `_LINEROUND_`   | formatted `_LINE_` | `3,100`
 `_VER_`         | Lineosaurus version | `1.23`
@@ -145,9 +147,9 @@ variable        | description | example
   ```
 
 
-## Contributing
+<!-- ## Contributing
 
-Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, create a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding.
+Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, create a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding. -->
 
 
 ## License
