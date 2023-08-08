@@ -6,7 +6,7 @@ from src.constants import CARDS
 from src.get_options.get_options import get_options
 
 
-class TestGetOptions(unittest.TestCase):
+class Test__get_options(unittest.TestCase):
 
     def test_only_type(self):
         
@@ -242,6 +242,10 @@ class TestGetOptions(unittest.TestCase):
         self.assertEqual(str(ctx.exception), 'Invalid card-order value.')
 
     def test_prefer_extension(self):
+        ## The same as show-approx
+        pass
+
+    def test_auto_line_break(self):
         ## The same as show-approx
         pass
 

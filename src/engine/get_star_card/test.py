@@ -16,7 +16,7 @@ class Test__writer(unittest.TestCase):
 
     def test_num_shown(self):
         
-        result = writer(1, False, None, TOTAL, PACK)
+        result = writer(1, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
             'foo-bar-baz  1500 stargazers  73%  ⭐️🌟⭐️🌟⭐️🌟⭐️🌟⭐️\n'
@@ -24,7 +24,7 @@ class Test__writer(unittest.TestCase):
         )
         self.assertEqual(result, expected)
         
-        result = writer(3, False, None, TOTAL, PACK)
+        result = writer(3, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
             'foo-bar-baz  1500 stargazers  73%  ⭐️🌟⭐️🌟⭐️🌟⭐️🌟⭐️\n'
@@ -33,8 +33,8 @@ class Test__writer(unittest.TestCase):
             '```'
         )
         self.assertEqual(result, expected)
-        
-        result = writer(5, False, None, TOTAL, PACK)
+
+        result = writer(5, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
             'foo-bar-baz  1500 stargazers  73%  ⭐️🌟⭐️🌟⭐️🌟⭐️🌟⭐️\n'

@@ -1,15 +1,16 @@
 # Lineosaurus🦕
 
-(under development)
-
 [![Run tests](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml)
 [![License](https://img.shields.io/github/license/nvfp/Line-O-Saurus)](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE)
+
+Count up lines of code, repository sizes, stargazers, character counts across your repositories!
 
 ![lineosaurus](https://github.com/nvfp/Line-O-Saurus/blob/main/assets/lineosaurus_h200.jpg?raw=true)
 
 
-
 ## Usage
+
+> Make sure you have README.md at the root
 
 Copy this file `.github/workflows/lineosaurus.yml` to your repository.
 
@@ -28,17 +29,25 @@ jobs:
       contents: write  # For committing
     steps:
       - uses: nvfp/Line-O-Saurus@v1
+        env:
+          GH_TOKEN: ${{ github.token }}  # For GitHub CLI
         with:
+
+          ## required ##
+
           git-name: your name
           git-email: your@email
+
+          ## options ##
+
           only-type: null
           ignore-type: null
           header: null
           footer: null
           custom-title: |-
-            ### ~ Updated on _DATE_ ~
+            ### Over _LINESROUND_ lines of code stretch through _OWNER_'s repositories.
 
-            ### _LINE_ lines of code stretch through _OWNER_'s repositories.
+            ### *updated on _DATE_*
           num-shown: 3
           show-approx: true
           card-titles: |
@@ -52,46 +61,49 @@ jobs:
             - star
             - stat
           prefer-extension: true
-          show-credit: false
-        env:
-          GH_TOKEN: ${{ github.token }}  # For GitHub CLI
+          auto-line-break: true
+          show-credit: true
 ```
-
-> Note: both `git-name` and `git-email` must be specified for committing the update.
 
 ### Options
 
-option             | description | default
----                | ---         | ---
-`only-type`        | foo | `null`
-`ignore-type`      | ignored if only-type is specified | 
-`header`           | header file (relative to repo root) | 
-`footer`           | footer file (relative to repo root) | 
-`custom-title`     | you can use `_OWNER_`,  | 
-`num-shown`        | number of  | 
-`show-approx`      | `13K` instead of `13,241` | 
-`card-titles`      |  | 
-`card-order`       |  | 
-`prefer-extension` | `.py` over `Python` | 
-`show-credit`      | show the credit at the end of the file | 
+option             | description | default | example
+---                | ---         | ---     | ---
+`only-type`        | count only specific file type | `null` | `'[".py", ".js"]'`
+`ignore-type`      | ignore specific file type (this option is ignored if `only-type` is used) | `null` | `'[".py", ".js"]'`
+`header`           | set extra stuff above the cards (text/path) | `null` | `relative/path/to/header.md`
+`footer`           | set extra stuff below the cards (text/path) | `null` | `## This is a footer`
+`custom-title`     | special text above the top card | `null` | `## _OWNER_'s stats`
+`num-shown`        | number of items for each card | `3` | 
+`show-approx`      | will be using `13K` instead of `13,241` | `true` |
+`card-titles`      | set special titles for specific cards | `null` | `'{"line": "foo", "stat": "bar"}'`
+`card-order`       | choose and arrange the cards | `null` | `'["line", "stat"]'`
+`prefer-extension` | will be using `.py` over `Python` | `true` | 
+`auto-line-break`  | auto next line after header/footer/etc ends | `true` | 
+`show-credit`      | show credit at the end of the file | `true` | 
 
 ### Variables
 
-variable | description
----      | ---
-`_OWNER_` | your GitHub username
-`_DATE_` | todays date in format 'Jan 1, 2023'
-`_LINES_` | total lines (regardless only-type/ignore-type)
-`_LINE_` | total lines (excluding only-type/ignore-type)
-`_NUM_PUB_REPOS_` | number of public repo
-`_NUM_STARS_` | total stargazers
+These variables can be used inside `header`, `custom-title`, `card-titles`, and `footer`.
+
+variable        | description | example
+---             | ---         | ---
+`_OWNER_`       | your GitHub username | `Lineosaurus`
+`_DATE_`        | today's date | `Aug 1, 2023`
+`_LINES_`       | total lines of code across all repositories (regardless only-type/ignore-type) | `123456`
+`_LINESAPPROX_` | formatted `_LINES_` | `123K`
+`_LINESROUND_`  | formatted `_LINES_` | `120,000`
+`_LINE_`        | total lines of code across all repositories (following only-type/ignore-type) | `3141`
+`_LINEAPPROX_`  | `_LINE_` but approx | `3.1K`
+`_LINEROUND_`   | `_LINE_` but round | `3,100`
+`_VER_`         | Lineosaurus version | `v1.23`
 
 ### Variations
 
-```yml
-with:
-  git-name: your name
-  git-email: your@email
+- by [nvfp](https://github.com/nvfp):
+
+  *python-dev*
+  ```yml
   only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
   ignore-type: |
     - .py
@@ -101,17 +113,15 @@ with:
   show-approx: true
   card-titles: '{"line": "foo", "star": "bar"}'
   card-order: '["line", "star"]'
-```
+  ```
 
-```yml
-with:
-  git-name: your name
-  git-email: your@email
+  *curious*
+  ```yml
   only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
   ignore-type: |
     - .py
     - .md
-  header: assets/header.md
+  footer: footer.md
   custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
   show-approx: true
   card-titles: |
@@ -132,9 +142,14 @@ with:
     star
     cmit
     file
-```
+  ```
+
+
+## Contributing
+
+Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, submit a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding.
 
 
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE)
+The scripts and documentation in this project are released under the [MIT License](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE).

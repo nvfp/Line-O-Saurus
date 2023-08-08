@@ -1,6 +1,6 @@
 import unittest
 
-from src.engine.variables_manager import Vars, replace_vars
+from src.engine.variables_pool import Vars, replace_vars
 
 
 class Test__replace_vars(unittest.TestCase):

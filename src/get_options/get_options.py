@@ -34,6 +34,7 @@ def get_options(
     CARD_TITLES='',
     CARD_ORDER='',
     PREFER_EXTENSION='true',
+    AUTO_LINE_BREAK='true',
     SHOW_CREDIT='true',
 ):
     
@@ -100,14 +101,7 @@ def get_options(
             OPTIONS.FOOTER = f.read()
 
     ## custom-title
-    if CUSTOM_TITLE == '':
-        ## This default should match the one in the README
-        OPTIONS.CUSTOM_TITLE = (
-            '~ Updated on _DATE_ ~\n\n'
-            "_LINE_ lines of code stretch through _OWNER_'s repositories."
-        )
-    else:
-        OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
+    OPTIONS.CUSTOM_TITLE = CUSTOM_TITLE
 
     ## num-shown
     try:
@@ -119,23 +113,13 @@ def get_options(
         raise AssertionError('Invalid num-shown value.')
 
     ## show-approx
-    if SHOW_APPROX == 'true':
-        OPTIONS.SHOW_APPROX = True
-    elif SHOW_APPROX == 'false':
-        OPTIONS.SHOW_APPROX = False
-    else:
-        raise AssertionError('Invalid show-approx value.')
+    if SHOW_APPROX == 'true': OPTIONS.SHOW_APPROX = True
+    elif SHOW_APPROX == 'false': OPTIONS.SHOW_APPROX = False
+    else: raise AssertionError('Invalid show-approx value.')
 
     ## card-titles
     OPTIONS.CARD_TITLES = {c: '' for c in CARDS}
-    if CARD_TITLES == '':
-        OPTIONS.CARD_TITLES.update({
-            ## This default should match the one in the README
-            'line': "Lines of code",
-            'type': "Languages",
-            'star': "Stargazers",
-            'stat': "_OWNER_'s statistics",
-        })
+    if CARD_TITLES == '': pass
     else:
         try:
             card_titles = parse_dict(CARD_TITLES)
@@ -150,8 +134,7 @@ def get_options(
 
     ## card-order
     if CARD_ORDER == '':
-        ## This default should match the one in the README
-        OPTIONS.CARD_ORDER = ['line', 'type', 'star', 'stat']
+        OPTIONS.CARD_ORDER = []
     else:
         try:
             card_order = parse_list(CARD_ORDER)
@@ -167,19 +150,18 @@ def get_options(
         OPTIONS.CARD_ORDER = card_order
 
     ## prefer-extension
-    if PREFER_EXTENSION == 'true':
-        OPTIONS.PREFER_EXTENSION = True
-    elif PREFER_EXTENSION == 'false':
-        OPTIONS.PREFER_EXTENSION = False
-    else:
-        raise AssertionError('Invalid prefer-extension value.')
+    if PREFER_EXTENSION == 'true': OPTIONS.PREFER_EXTENSION = True
+    elif PREFER_EXTENSION == 'false': OPTIONS.PREFER_EXTENSION = False
+    else: raise AssertionError('Invalid prefer-extension value.')
+
+    ## auto-line-break
+    if AUTO_LINE_BREAK == 'true': OPTIONS.AUTO_LINE_BREAK = True
+    elif AUTO_LINE_BREAK == 'false': OPTIONS.AUTO_LINE_BREAK = False
+    else: raise AssertionError('Invalid auto-line-break value.')
 
     ## show-credit
-    if SHOW_CREDIT == 'true':
-        OPTIONS.SHOW_CREDIT = True
-    elif SHOW_CREDIT == 'false':
-        OPTIONS.SHOW_CREDIT = False
-    else:
-        raise AssertionError('Invalid show-credit value.')
+    if SHOW_CREDIT == 'true': OPTIONS.SHOW_CREDIT = True
+    elif SHOW_CREDIT == 'false': OPTIONS.SHOW_CREDIT = False
+    else: raise AssertionError('Invalid show-credit value.')
 
     return OPTIONS

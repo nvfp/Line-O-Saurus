@@ -1,10 +1,10 @@
 
 
-__version__ = '1.0.0b11'
+__version__ = '1.0'
 
 
 PB_CHAR = '▆'  # Default progress bars character
-PB_LEN = 21  # Progress bars length
+PB_LEN = 30  # Progress bars length
 
 """
 Cards
