@@ -19,17 +19,17 @@ class Test__writer(unittest.TestCase):
         result = writer(1, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
-            f'foo-bar-baz  1500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
+            f'foo-bar-baz  1,500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
             '```'
         )
         self.assertEqual(result, expected)
-        
+
         result = writer(3, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
-            f'foo-bar-baz  1500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
-            f'foo           500 stargazers  25%  {get_bars(500, TOTAL)}\n'
-            f'foo-bar        50 stargazers   2%  {get_bars(50, TOTAL)}\n'
+            f'foo-bar-baz  1,500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
+            f'foo            500 stargazers  25%  {get_bars(500, TOTAL)}\n'
+            f'foo-bar         50 stargazers   2%  {get_bars(50, TOTAL)}\n'
             '```'
         )
         self.assertEqual(result, expected)
@@ -37,10 +37,10 @@ class Test__writer(unittest.TestCase):
         result = writer(5, False, '', TOTAL, PACK)
         expected = (
             f'```{LANG}\n'
-            f'foo-bar-baz  1500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
-            f'foo           500 stargazers  25%  {get_bars(500, TOTAL)}\n'
-            f'foo-bar        50 stargazers   2%  {get_bars(50, TOTAL)}\n'
-            f'bar             5 stargazers   0%  {get_bars(5, TOTAL)}\n'
+            f'foo-bar-baz  1,500 stargazers  73%  {get_bars(1500, TOTAL)}\n'
+            f'foo            500 stargazers  25%  {get_bars(500, TOTAL)}\n'
+            f'foo-bar         50 stargazers   2%  {get_bars(50, TOTAL)}\n'
+            f'bar              5 stargazers   0%  {get_bars(5, TOTAL)}\n'
             '```'
         )
         self.assertEqual(result, expected)
