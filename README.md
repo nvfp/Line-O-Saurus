@@ -10,7 +10,7 @@ Count up lines of code, repository sizes, stargazers, character counts across yo
 
 ## Usage
 
-> Make sure you have README.md at the root
+> Make sure you have README.md at the root of your repository.
 
 Copy this file `.github/workflows/lineosaurus.yml` to your repository.
 
@@ -94,8 +94,8 @@ variable        | description | example
 `_LINESAPPROX_` | formatted `_LINES_` | `123K`
 `_LINESROUND_`  | formatted `_LINES_` | `120,000`
 `_LINE_`        | total lines of code across all repositories (following only-type/ignore-type) | `3141`
-`_LINEAPPROX_`  | `_LINE_` but approx | `3.1K`
-`_LINEROUND_`   | `_LINE_` but round | `3,100`
+`_LINEAPPROX_`  | formatted `_LINE_` | `3.1K`
+`_LINEROUND_`   | formatted `_LINE_` | `3,100`
 `_VER_`         | Lineosaurus version | `1.23`
 
 ### Variations
@@ -147,7 +147,7 @@ variable        | description | example
 
 ## Contributing
 
-Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, submit a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding.
+Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, create a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding.
 
 
 ## License

@@ -2,6 +2,7 @@ import unittest
 
 from src.constants import PB_CHAR, PB_LEN
 from src.engine.get_line_card import LANG, writer
+from src.engine.pb_maker import progress_bars_maker
 
 
 LINE_PER_REPO = {
@@ -20,9 +21,9 @@ class Test__writer(unittest.TestCase):
         result = writer(3, False, '', LINE_PER_REPO)
         expected = (
             f'```{LANG}\n'
-            f'foo-bar-baz  1,500 lines  73%  {PB_CHAR*round(PB_LEN*1500/TOTAL)}\n'
-            f'foo            500 lines  24%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
-            f'foo-bar         50 lines   2%  {PB_CHAR*round(PB_LEN*50/TOTAL)}{" "*round(PB_LEN*(1-50/TOTAL))}\n'
+            f'foo-bar-baz  1,500 lines  73%  {progress_bars_maker(1500, TOTAL, PB_CHAR, PB_LEN)}\n'
+            f'foo            500 lines  24%  {progress_bars_maker(500, TOTAL, PB_CHAR, PB_LEN)}\n'
+            f'foo-bar         50 lines   2%  {progress_bars_maker(50, TOTAL, PB_CHAR, PB_LEN)}\n'
             '```'
         )
         self.assertEqual(result, expected)
@@ -34,9 +35,9 @@ class Test__writer(unittest.TestCase):
         expected = (
             f'{title}\n\n'
             f'```{LANG}\n'
-            f'foo-bar-baz  1,500 lines  73%  {PB_CHAR*round(PB_LEN*1500/TOTAL)}\n'
-            f'foo            500 lines  24%  {PB_CHAR*round(PB_LEN*500/TOTAL)}{" "*round(PB_LEN*(1-500/TOTAL))}\n'
-            f'foo-bar         50 lines   2%  {PB_CHAR*round(PB_LEN*50/TOTAL)}{" "*round(PB_LEN*(1-50/TOTAL))}\n'
+            f'foo-bar-baz  1,500 lines  73%  {progress_bars_maker(1500, TOTAL, PB_CHAR, PB_LEN)}\n'
+            f'foo            500 lines  24%  {progress_bars_maker(500, TOTAL, PB_CHAR, PB_LEN)}\n'
+            f'foo-bar         50 lines   2%  {progress_bars_maker(50, TOTAL, PB_CHAR, PB_LEN)}\n'
             '```'
         )
         self.assertEqual(result, expected)
