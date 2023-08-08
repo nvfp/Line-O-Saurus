@@ -96,7 +96,7 @@ variable        | description | example
 `_LINE_`        | total lines of code across all repositories (following only-type/ignore-type) | `3141`
 `_LINEAPPROX_`  | `_LINE_` but approx | `3.1K`
 `_LINEROUND_`   | `_LINE_` but round | `3,100`
-`_VER_`         | Lineosaurus version | `v1.23`
+`_VER_`         | Lineosaurus version | `1.23`
 
 ### Variations
 

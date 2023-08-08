@@ -17,6 +17,15 @@ from src.engine.card_maker import card_maker
 LANG = 'txt'
 
 
+def get_bars(star, total):
+    nbar = round(PB_LEN*star/total)
+    bars = ''
+    for b in range(nbar):
+        if (b%2) == 0: bars += '⭐️'
+        else: bars += '🌟'
+    return bars + ' '*(PB_LEN-nbar)
+
+
 def get_entries(SHOW_APPROX, total, pack_cut):
     
     entries = []
@@ -28,18 +37,11 @@ def get_entries(SHOW_APPROX, total, pack_cut):
         else:
             nstar = f'{star:,}'
 
-        bars = ''
-        for b in range(round(PB_LEN*star/total)):
-            if (b%2) == 0:
-                bars += '⭐️'
-            else:
-                bars += '🌟'
-
         entries.append([
             repo,
             f'{nstar} stargazers',
             f'{round(100*star/total)}%',
-            bars
+            get_bars(star, total)
         ])
 
     return entries

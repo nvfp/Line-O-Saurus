@@ -5,6 +5,10 @@ import os
 from src.engine.counter import counter
 
 
+## Note: these tests should be run on Linux because file sizes differ
+##       between Windows and Linux due to the newline characters (\r\n and \n).
+
+
 TEST_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 
 
@@ -21,7 +25,6 @@ class Test__counter(unittest.TestCase):
         }
         self.assertEqual(line_per_ext, expected)
         
-        ## On Linux
         expected = {
             '.txt': 28 + 5,
             '.md': 12,
@@ -29,7 +32,6 @@ class Test__counter(unittest.TestCase):
         }
         self.assertEqual(size_per_ext, expected)
 
-        ## On Linux
         expected = {
             '.txt': 28 + 5,
             '.md': 12,

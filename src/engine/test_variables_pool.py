@@ -22,7 +22,7 @@ class Test__replace_vars(unittest.TestCase):
         text = 'foo _OWNER__LINE_'
 
         result = replace_vars(text)
-        expected = 'foo _OWNER__LINE_'
+        expected = 'foo FooBar200'
         self.assertEqual(result, expected)
 
     def test3(self):

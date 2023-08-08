@@ -1,6 +1,6 @@
 import unittest
 
-from src.engine.assembler import engine
+from src.engine import engine
 
 
 DIR = 0

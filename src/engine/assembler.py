@@ -6,27 +6,21 @@ CREDIT = f'Counted by [Lineosaurus v{__version__}](https://github.com/nvfp/Line-
 
 def assembler(header, custom_title, cards, footer, show_credit, auto_line_break):
 
-    ## header
-    text = header
+    sections = [header]
 
-    ## custom-title
     if custom_title != '':
-        if auto_line_break: text += '\n\n'
-        text += custom_title
+        sections.append(custom_title)
 
-    ## card-order
     if cards != '':
-        if auto_line_break: text += '\n\n'
-        text += cards
+        sections.append(cards)
 
-    ## footer
     if footer != '':
-        if auto_line_break: text += '\n\n'
-        text += footer
+        sections.append(footer)
 
-    ## show-credit
     if show_credit:
-        if auto_line_break: text += '\n\n'
-        text += CREDIT
+        sections.append(CREDIT)
 
-    return text
+    if auto_line_break:
+        return '\n\n'.join(sections)
+    else:
+        return ''.join(sections)
