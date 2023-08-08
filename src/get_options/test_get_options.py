@@ -62,10 +62,11 @@ class Test__get_options(unittest.TestCase):
     
     def test_header(self):
         
-        ## Passes
-
         OPT = get_options(HEADER='')
         self.assertEqual(OPT.HEADER, '')
+        
+        OPT = get_options(HEADER='## This is a header')
+        self.assertEqual(OPT.HEADER, '## This is a header')
 
         OPT = get_options(HEADER='README.md')
         with open(os.path.join(os.environ['GITHUB_WORKSPACE'], 'README.md'), 'r') as f: text = f.read()
@@ -73,11 +74,6 @@ class Test__get_options(unittest.TestCase):
 
         OPT = get_options(HEADER='tests/test_header.md')
         self.assertEqual(OPT.HEADER, '### This header text should be inside tests/test_header.md\n\n')
-
-        ## Fails
-
-        with self.assertRaises(AssertionError) as ctx: get_options(HEADER='non-existing-file-124124141513414')
-        self.assertEqual(str(ctx.exception), 'Invalid header value.')
     
     def test_footer(self):
         ## The same as `header`

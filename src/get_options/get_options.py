@@ -77,26 +77,18 @@ def get_options(
         OPTIONS.IGNORE_TYPE = ignore_type
     
     ## header
-    if HEADER == '':
-        OPTIONS.HEADER = ''
-    else:
-        ## Use 'normpath' for Windows (converts '/' to '\'),
-        ## and for Linux (case-sensitive paths), prefer 'normpath' over 'normcase'.
-        header = os.path.join(REPO_ROOT_DIR, os.path.normpath(HEADER))
-        if not os.path.isfile(header):
-            raise AssertionError('Invalid header value.')
+    OPTIONS.HEADER = HEADER
+    ## Use 'normpath' for Windows (converts '/' to '\'),
+    ## and for Linux (case-sensitive paths), prefer 'normpath' over 'normcase'.
+    header = os.path.join(REPO_ROOT_DIR, os.path.normpath(HEADER))
+    if os.path.isfile(header):
         with open(header, 'r') as f:
             OPTIONS.HEADER = f.read()
-    
+
     ## footer
-    if FOOTER == '':
-        OPTIONS.FOOTER = ''
-    else:
-        ## Use 'normpath' for Windows (converts '/' to '\'),
-        ## and for Linux (case-sensitive paths), prefer 'normpath' over 'normcase'.
-        footer = os.path.join(REPO_ROOT_DIR, os.path.normpath(FOOTER))
-        if not os.path.isfile(footer):
-            raise AssertionError('Invalid footer value.')
+    OPTIONS.FOOTER = FOOTER
+    footer = os.path.join(REPO_ROOT_DIR, os.path.normpath(FOOTER))
+    if os.path.isfile(footer):
         with open(footer, 'r') as f:
             OPTIONS.FOOTER = f.read()
 
