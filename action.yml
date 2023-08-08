@@ -1,5 +1,5 @@
 name: Lineosaurus
-description: Let's count!
+description: GitHub profile statistics counter
 author: Nicholas Valentinus
 branding:
   icon: align-justify
@@ -7,47 +7,47 @@ branding:
 
 inputs:
   git-name:
-    description: Git name
+    description: 
     required: true
   git-email:
-    description: Git email
+    description: 
     required: true
   only-type:
-    description: '[".py", ".js"]'
+    description: 
     default: null  # Note: in YAML, `null` becomes `''` in Python.
   ignore-type:
-    description: '[".py", ".js"]'
+    description: 
     default: null
   header:
-    description: Header (relative to repo root)
+    description: 
     default: null
   footer:
-    description: Footer
+    description: 
     default: null
   custom-title:
-    description: Title
+    description: 
     default: null
   num-shown:
-    description: Number
+    description: 
     default: 3
   show-approx:
-    description: Approx
+    description: 
     default: true
   card-titles:
-    description: card titles
+    description: 
     default: null
   card-order:
-    description: card order
+    description: 
     default: null
   prefer-extension:
-    description: .py instead of Python
+    description: 
     default: true
   auto-line-break:
-    description: .py instead of Python
+    description: 
     default: true
   show-credit:
-    description: Lino credit
-    default: false
+    description: 
+    default: true
 
 runs:
   using: 'composite'
