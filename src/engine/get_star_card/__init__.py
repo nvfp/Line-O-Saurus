@@ -6,6 +6,7 @@ from pyggc.ghcli.simple import pack_stargazers, total_stargazers
 
 from src.constants import PB_LEN
 from src.engine.card_maker import card_maker
+from src.engine.pb_maker import progress_bars_alternating
 
 
 # foo-bar-baz  124,211 stargazers  33%  ⭐️🌟⭐️🌟⭐️🌟⭐️🌟⭐️🌟⭐️
@@ -15,15 +16,6 @@ from src.engine.card_maker import card_maker
 
 
 LANG = 'txt'
-
-
-def get_bars(star, total):
-    nbar = round(PB_LEN*star/total)
-    bars = ''
-    for b in range(nbar):
-        if (b%2) == 0: bars += '⭐️'
-        else: bars += '🌟'
-    return bars + ' '*(PB_LEN-nbar)
 
 
 def get_entries(SHOW_APPROX, total, pack_cut):
@@ -41,7 +33,7 @@ def get_entries(SHOW_APPROX, total, pack_cut):
             repo,
             f'{nstar} stargazers',
             f'{round(100*star/total)}%',
-            get_bars(star, total)
+            progress_bars_alternating(star, total, '⭐️', '🌟', PB_LEN)
         ])
 
     return entries

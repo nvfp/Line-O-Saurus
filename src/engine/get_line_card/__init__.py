@@ -6,7 +6,7 @@ from mykit.kit.utils import sort_dict_by_val, get_first_n_dict_items
 from src.constants import PB_CHAR, PB_LEN
 from src.engine.card_maker import card_maker
 from src.engine.counter import counter
-from src.engine.pb_maker import progress_bars_maker
+from src.engine.pb_maker import progress_bars
 
 
 # foo-bar-baz  124,211 lines  33%  ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
@@ -33,7 +33,7 @@ def get_entries(SHOW_APPROX, total, line_per_repo):
             repo,
             f'{nline} lines',
             f'{round(100*num_lines/total)}%',
-            progress_bars_maker(num_lines, total, PB_CHAR, PB_LEN)
+            progress_bars(num_lines, total, PB_CHAR, PB_LEN)
         ])
     
     return entries
