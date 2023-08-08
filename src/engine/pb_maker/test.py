@@ -29,7 +29,7 @@ class Test__progress_bars_alternating(unittest.TestCase):
     def test(self):
 
         result = progress_bars_alternating(0, 10, 'X', 'Y', 10)
-        expected = ' '*10
+        expected = ''
         self.assertEqual(result, expected)
 
         result = progress_bars_alternating(1, 10, 'X', 'Y', 10)
