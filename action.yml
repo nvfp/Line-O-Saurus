@@ -13,10 +13,10 @@ inputs:
     description: Git email
     required: true
   only-type:
-    description: "['.py', '.js']"
+    description: '[".py", ".js"]'
     default: null  # Note: in YAML, `null` becomes `''` in Python.
   ignore-type:
-    description: "['.py', '.js']"
+    description: '[".py", ".js"]'
     default: null
   header:
     description: Header (relative to repo root)
@@ -42,8 +42,11 @@ inputs:
   prefer-extension:
     description: .py instead of Python
     default: true
+  auto-line-break:
+    description: .py instead of Python
+    default: true
   show-credit:
-    description: show the credit
+    description: Lino credit
     default: false
 
 runs:
@@ -70,6 +73,7 @@ runs:
         CARD_TITLES: ${{ inputs.card-titles }}
         CARD_ORDER: ${{ inputs.card-order }}
         PREFER_EXTENSION: ${{ inputs.prefer-extension }}
+        AUTO_LINE_BREAK: ${{ inputs.auto-line-break }}
         SHOW_CREDIT: ${{ inputs.show-credit }}
     - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
       shell: bash
