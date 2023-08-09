@@ -1,1 +1,1 @@
-🦕moved to [here](https://github.com/Lineosaurus/Lineosaurus)
+🦕Hello, i'm [here](https://github.com/Lineosaurus/Lineosaurus)
